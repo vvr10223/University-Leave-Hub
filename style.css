@@ -1,0 +1,258 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    /* width: 100%; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background: #00e6ee; */
+}
+
+::selection {
+    color: #fff;
+    background: #53f0e3;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #340468;
+    font-size: small;
+    position:absolute;
+    top: 1vh;
+    margin: 0.5vh;
+}
+
+.wrapper {
+    width: 27%;
+    height: 60vh;
+    margin-top: 5vh;
+    /* margin-bottom: 5vh; */
+    /* display: flex; */
+    border-radius: 2vh;
+    padding: 4vh 3vh 5vh 3vh;
+    background: #ffffff;
+    border: 0.5vh solid rgb(167,213,241);
+    text-align: center;
+    box-shadow: 1vh 1vh 1.5vh rgba(0, 0, 0, 0.1);
+}
+
+.wrapper header {
+    font-size: 3rem;
+    /* font-weight: 600; */
+}
+
+.wrapper form {
+    margin: 4vh 0;
+}
+
+/* form .field {
+    width: 100%;
+    margin-bottom: 2vh;
+} */
+form .email{
+    margin-bottom: 2vh;
+}
+form .password{
+    margin-bottom: 2vh;
+}
+form .field.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        margin-left: 0vh;
+    }
+    20%,
+    80% {
+        margin-left: -1.2vh;
+    }
+    40%,
+    60% {
+        margin-left: 1.2vh;
+    }
+}
+
+form .field .input-area {
+    height: 6vh;
+    width: 100%;
+    position: relative;
+}
+
+form input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    padding: 0 4.5vh;
+    font-size: 1.8vh;
+    background: none;
+    caret-color: #5372F0;
+    border-radius: 0.5vh;
+    border: 0.1vh solid #bfbfbf;
+    border-bottom-width: 0.2vh;
+    transition: all 0.2s ease;
+}
+
+form .field input:focus,
+form .field.valid input {
+    border-color: #5372F0;
+}
+
+form .field.shake input,
+form .field.error input {
+    border-color: #dc3545;
+}
+
+.field .input-area i {
+    position: absolute;
+    top: 50%;
+    font-size: 1.8vh;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.input-area .icon {
+    left: 1.5vh;
+    color: #bfbfbf;
+    transition: color 0.2s ease;
+}
+
+.input-area .error-icon {
+    right: 1.5vh;
+    color: #dc3545;
+}
+
+form input:focus~.icon,
+form .field.valid .icon {
+    color: #5372F0;
+}
+
+form .field.shake input:focus~.icon,
+form .field.error input:focus~.icon {
+    color: #bfbfbf;
+}
+
+form input::placeholder {
+    color: #bfbfbf;
+    font-size: 1.7vh;
+}
+
+form .field .error-txt {
+    color: #dc3545;
+    text-align: left;
+    margin-top: 0.5vh;
+}
+
+form .field .error {
+    display: none;
+}
+
+form .field.shake .error,
+form .field.error .error {
+    display: block;
+}
+
+form .pass-txt {
+    text-align: left;
+    margin-top: -1vh;
+}
+
+.wrapper a {
+    color: #5372F0;
+    text-decoration: none;
+}
+
+.wrapper a:hover {
+    text-decoration: underline;
+}
+
+form input[type="submit"] {
+    height: 5vh;
+    margin-top: 1vh;
+    color: #fff;
+    padding: 0;
+    border: none;
+    background: #5372F0;
+    cursor: pointer;
+    border-bottom: 0.2vh solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background: #2c52ed;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper {
+        width: 80%; /* Adjust the width for smaller screens */
+        height: 50vh;
+    }
+    .logo{
+        flex-direction: column;
+        font-size: 0.7rem;
+    }
+    .wrapper header {
+        font-size: 2rem;
+        /* font-weight: 600; */
+    }
+    
+    .wrapper form {
+        margin: 4vh 0;
+    }
+    
+    /* form .field {
+        width: 100%;
+        margin-bottom: 2vh;
+    } */
+    form .email{
+        margin-bottom: 2vh;
+    }
+    form .password{
+        margin-bottom: 2vh;
+    }
+}
+
+@media screen and (max-width:600px){
+    .logo{
+        margin: 4vh;
+        margin-bottom: 0vh;
+        font-size: 0.5rem;
+    }
+    .wrapper {
+        width: 68%; /* Adjust the width for smaller screens */
+        height: 50%;
+    }
+    .wrapper header{
+        font-size: 1.5rem;
+    }
+}
+@media screen and (min-width: 601px) and (max-width: 900px){
+    .logo{
+        margin: 4vh;
+        margin-bottom: 0vh;
+    }
+    .wrapper {
+        width: 60%; 
+        height: 50%;
+    }
+}
+@media screen and (min-width: 901px) and (max-width: 1300px){
+    .logo{
+        margin: 4vh;
+        margin-bottom: 0vh;
+    }
+    .wrapper {
+        width: 36%; 
+        height: 50%;
+    }
+}
