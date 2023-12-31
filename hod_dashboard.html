@@ -1,0 +1,123 @@
+<!-- templates/hod_dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard - Leave Management System</title>
+    <!-- Bootstrap CSS link (you can download and include it locally if needed) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-container {
+            margin-bottom: 20px;
+        }
+
+        .nav-container a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-btn,
+        .dashboard-btn,
+        .leave-history-btn {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .leave-request-form {
+            margin-bottom: 20px;
+        }
+
+        .leave-request-form input,
+        .leave-request-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .leave-request-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .leave-request-form button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="nav-container">
+                    <a class="btn home-btn" href="./hod_dashboard.html">Home</a>
+                    <a class="btn dashboard-btn" href="{% url 'hod_dashboard' %}">Dashboard</a>
+                    <a class="btn leave-history-btn" href="./leave_history1.html">Leave History</a>
+                </div>
+
+                <div class="dashboard-container">
+                    <h2>Welcome, {{ request.user.username }} (HOD)!</h2>
+
+                    <div class="content">
+                        <h3>Leave Request</h3>
+                        <form class="leave-request-form" method="post" action="{% url 'leave_request_hod' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="start_date">Start Date:</label>
+                                <input type="date" name="start_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="end_date">End Date:</label>
+                                <input type="date" name="end_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reason">Reason for Leave:</label>
+                                <textarea name="reason" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit">Submit Leave Request</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
