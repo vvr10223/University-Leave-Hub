@@ -1,0 +1,471 @@
+{"colleges":[{"name" : "jntu",
+"Principal" : {},
+"department" : [{"name" : "Computer Science Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Electronics and Communication Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Electrical and Electronics Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Information Technology",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Mechanical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Mechanical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Civil Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Metallurgical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+}]
+},
+{"name" : "mvgr",
+"Principal" : {},
+"department" : [{"name" : "Computer Science Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Electronics and Communication Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Electrical and Electronics Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Information Technology",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Mechanical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Mechanical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Civil Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+},
+{"name" : "Metallurgical Engineering",
+"HOD" : {},
+"male_faculties" : [{
+"designation" : "Professor",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Professor",
+"employment_status" : "regular",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "contract",
+"members" : []},{
+"designation" : "Office Staff",
+"employment_status" : "regular",
+"members" : []}],
+"female_faculties" : [{
+    "designation" : "Professor",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Professor",
+    "employment_status" : "regular",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "contract",
+    "members" : []},{
+    "designation" : "Office Staff",
+    "employment_status" : "regular",
+    "members" : []}]
+}]
+}
+]}
