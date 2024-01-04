@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'LeaveManagementSystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'leavemanagementsystem',
+        'NAME': 'LeaveManagementSystem',
         'USER': 'root',
         'PASSWORD': 'LiveClass',
         'HOST': '127.0.0.1',

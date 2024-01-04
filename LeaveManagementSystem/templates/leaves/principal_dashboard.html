@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOD Dashboard - Leave Management System</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        {% for message in messages %}
+        alert("{{ message }}");
+        {% endfor %}
+    </script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -90,7 +95,7 @@
                 </div>
 
                 <div class="dashboard-container">
-                    <h2>Welcome, {{ request.user.username }} (HOD)!</h2>
+                    <h2>Welcome, {{ request.user.username }} (Principal)!</h2>
 
                     <div class="content">
                         <h3>Leave Request</h3>

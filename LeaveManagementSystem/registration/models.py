@@ -20,4 +20,3 @@ class Faculty(models.Model):
     employment_type=models.CharField(max_length=20)
     employment_status=models.CharField(max_length=20)
     leave_balance=models.JSONField()
-

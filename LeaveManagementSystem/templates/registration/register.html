@@ -88,11 +88,24 @@
                     <form method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                         <div class="form-group">
+                            <label for="college_name">College Name:</label>
+                            <select name="college_name" id="college_name" required>
+                                <option value="jntu">jntu</option>
+                                <option value="mvgr">mvgr</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <input type="text" name="employee_id" placeholder="Employee Id" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="username" placeholder="username" required>
+                            <input type="text" name="username" placeholder="Username" required>
                         </div>
+                        <div class="form-group">
+                            <label for="gender">Section:</label>
+                            <select name="gender" id="gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
                         <div class="form-group">
                             <input type="tel" name="phone" placeholder="Phone Number" required>
                         </div>
@@ -103,8 +116,8 @@
                             <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <label for="department">Department:</label>
-                            <select name="department" id="department" required>
+                            <label for="department_name">Department Name:</label>
+                            <select name="department_name" id="department_name" required>
                                 <option value="Computer Science Engineering">Computer Science Engineering</option>
                                 <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
                                 <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
@@ -115,12 +128,20 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="section_name">Section:</label>
+                            <select name="section_name" id="section_name" required>
+                                <option value="Examination Section">Examination Section</option>
+                                <option value="Academic Section">Academic Section</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="designation">Designation:</label>
                             <select name="designation" id="designation" required>
                                 <option value="Principal">Principal</option>
-                                <option value="HOD">HOD</option>
-                                <option value="Professor">Professor</option>
-                                <option value="Office Staff">Office Staff</option>
+                                <option value="Department HOD">HOD</option>
+                                <option value="Examination Section HOD">Examination Section HOD</option>
+                                <option value="Academic Section HOD">Academic Section HOD</option>
+                                <option value="Employee">Employee</option>
                             </select>
                         </div>
                         <div class="form-group">
