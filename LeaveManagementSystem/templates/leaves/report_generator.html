@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>Report Generator</title>
+<body>
+<script>
+    {% for message in messages %}
+    alert("{{ message }}");
+    {% endfor %}
+</script>
+<a class="btn home-btn" href="{% url 'index' %}">Home</a>
+<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
+<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+{% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
+<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+{% endif %}
+<h1>This is Report Generator Page</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>

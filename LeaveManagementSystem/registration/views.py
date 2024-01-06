@@ -5,39 +5,38 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
-from django.contrib.auth import login as auth_logout
+from django.contrib.auth import logout as auth_logout
 from LeaveManagementSystem.settings import *
 from registration.models import *
 from leaves.models import *
 import json
 def home(request):
-    # row=Colleges.objects.get(college_name="jntu")
-    # print(row.pk)
-    # with connection.cursor() as cursor:
-    #     cursor.execute("select id from registration_colleges where college_name=%s",params=['jntu'])
-    #     s=cursor.fetchone()
-    #     print(s[0])
     return render(request,'registration/home.html')
 def register(request):
     if request.method=="POST":
         college_name=request.POST['college_name']
         employee_id=request.POST['employee_id']
-        # if User.objects.filter(employee_id=employee_id):
-        #     messages.error(request,"Given Employee Id already already exists")
-        #     return redirect('home')
+        if Faculty.objects.filter(employee_id=employee_id):
+            messages.error(request,"Given Employee Id already already exists")
+            return redirect('home')
         username=request.POST['username']
         if User.objects.filter(username=username):
             messages.error(request,"Given Username already exists")
             return redirect('home')
         gender=request.POST['gender']
         phone=request.POST['phone']
+        if Faculty.objects.filter(phone=phone):
+            messages.error(request,"Given phone number already already exists")
+            return redirect('home')
         aadhar=request.POST['aadhar']
+        if Faculty.objects.filter(aadhar=aadhar):
+            messages.error(request,"Given aadhar number already exists")
+            return redirect('home')
         email=request.POST['email']
         if User.objects.filter(email=email):
             messages.error(request,"Given Gmail Id already exists")
             return redirect('home')
         department_name=request.POST['department_name']
-        section_name=request.POST['section_name']
         designation=request.POST['designation']
         employment_type=request.POST['employment_type']
         employment_status=request.POST['employment_status']
@@ -48,26 +47,25 @@ def register(request):
         else:
             current_user=User.objects.create_user(username,email,password)
             current_user.save()
-            college_row=Colleges.objects.get(college_name=college_name)
-            section_row=Section.objects.get(section_name=section_name)
+            current_college=Colleges.objects.get(college_name=college_name)
             dept_row=Department.objects.get(dept_name=department_name)
             if gender=="male" and employment_type=="teaching" and employment_status=="regular":
                 leave_balance=json.dumps(male_teaching_regular)
             elif gender=="male" and employment_type=="teaching" and employment_status=="contract":
                 leave_balance=json.dumps(male_teaching_contract)
-            elif gender=="male" and employment_type=="non teaching" and employment_status=="regular":
+            elif gender=="male" and employment_type=="non_teaching" and employment_status=="regular":
                 leave_balance=json.dumps(male_non_teaching_regular)
-            elif gender=="male" and employment_type=="non teaching" and employment_status=="contract":
+            elif gender=="male" and employment_type=="non_teaching" and employment_status=="contract":
                 leave_balance=json.dumps(male_non_teaching_contract)
             elif gender=="female" and employment_type=="teaching" and employment_status=="regular":
                 leave_balance=json.dumps(female_teaching_regular)
             elif gender=="female" and employment_type=="teaching" and employment_status=="contract":
                 leave_balance=json.dumps(female_teaching_contract)
-            elif gender=="female" and employment_type=="non teaching" and employment_status=="regular":
+            elif gender=="female" and employment_type=="non_teaching" and employment_status=="regular":
                 leave_balance=json.dumps(female_non_teaching_regular)
-            elif gender=="female" and employment_type=="non teaching" and employment_status=="contract":
+            elif gender=="female" and employment_type=="non_teaching" and employment_status=="contract":
                 leave_balance=json.dumps(female_non_teaching_contract)
-            current_faculty=Faculty(employee_id=employee_id,faculty_name=username,phone=phone,aadhar=aadhar,designation=designation,gender=gender,employment_type=employment_type,employment_status=employment_status,leave_balance=leave_balance,college_id=college_row,dept_id=dept_row,section_id=section_row,user_id=current_user)
+            current_faculty=Faculty(employee_id=employee_id,faculty_name=username,phone=phone,aadhar=aadhar,designation=designation,gender=gender,employment_type=employment_type,employment_status=employment_status,leave_balance=leave_balance,college_id=current_college,dept_id=dept_row,user_id=current_user)
             current_faculty.save()
             messages.success(request,"You are successfully registered")
             subject="Welcome Email"
@@ -85,21 +83,17 @@ def login(request):
         if user is not None:
             auth_login(request,user)
             messages.success(request,"You are successfully logged in")
-            current_faculty_row=Faculty.objects.get(user_id=user.pk)
-            designation=current_faculty_row.designation
-            print(designation)
-            if designation=="Principal":
-                return render(request,'leaves/principal_dashboard.html')
-            elif designation=="Department HOD":
-                return render(request,'leaves/hod_dashboard.html')
-            elif designation=="Employee":
-                return render(request,'leaves/employee_dashboard.html')
-            else:
-                return render(request,'leaves/employee_dashboard.html')
+            current_faculty=Faculty.objects.get(user_id=user.pk)
+            params={"faculty" : current_faculty}
+            return render(request,'registration/index.html',params)
         else:
             messages.error(request,"Not Yet Registered")
             return redirect('home')
     return render(request,'registration/login.html')
+def index(request):
+    current_faculty=Faculty.objects.get(user_id=request.user.pk)
+    params={"faculty" : current_faculty}
+    return render(request,'registration/index.html',params)
 def logout(request):
     auth_logout(request)
     messages.success(request,"You are successfully logged out")

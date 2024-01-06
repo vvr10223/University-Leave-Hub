@@ -8,8 +8,9 @@ class Leaves(models.Model):
     number_of_days=models.SmallIntegerField()
     leave_type = models.CharField(max_length=25,null=True,blank=False)
     reason = models.CharField(max_length=255,null=True,blank=True)
-    status = models.CharField(max_length=12)
+    status = models.JSONField()
 
+#different types of faculty and their default leave balances
 male_teaching_regular={
     "Casual Leaves" : 8,
     "Special Casual Leaves" : 7,
@@ -47,4 +48,13 @@ female_non_teaching_regular={
 }
 female_non_teaching_contract={
     "Casual Leaves" : 15,
+}
+
+#different values of leave status
+status_values=['pending','accepted','rejected']
+
+#default value of status_json
+status_default={
+    "hod" : status_values[0],
+    "principal" : status_values[0]
 }

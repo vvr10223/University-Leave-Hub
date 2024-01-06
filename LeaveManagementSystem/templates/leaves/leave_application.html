@@ -99,22 +99,43 @@
                     <h2>Welcome, {{ request.user.username }}!</h2>
 
                     <div class="nav-container">
-                        <a class="btn home-btn" href="{% url 'employee_dashboard' %}">Home</a>
-                        <a class="btn history-btn" href="./leave_history.html">Leave History</a>
+                        <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+                        <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
+                        <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+                        {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+                        <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
+                        <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+                        {% endif %}
                     </div>
 
                     <div class="remaining-leaves">
-                        <p>Remaining Leaves: {{ remaining_leaves }}</p>
+                        <p>Remaining Leaves: {{ remaining_leaves }}  </p>
                     </div>
 
                     <h3>Apply for Leave</h3>
-                    <form class="leave-form" method="post" action="{% url 'employee_dashboard' %}">
+                    <form class="leave-form" method="post" action="{% url 'leave_application' %}">
                         {% csrf_token %}
                         <div class="form-group">
+                            Start Date :
                             <input type="date" name="start_date" placeholder="Start Date" required>
                         </div>
                         <div class="form-group">
+                            End Date :
                             <input type="date" name="end_date" placeholder="End Date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leave_type">Leave Type:</label>
+                            <select name="leave_type" id="leave_type" required>
+                                <option value="Casual Leaves">Casual Leaves</option>
+                                {% if faculty.employment_status == 'regular' %}
+                                {% if faculty.employment_type == 'teaching' %}
+                                <option value="Academic Leaves">Academic Leaves</option>
+                                {% endif %}
+                                <option value="Medical Leaves">Medical Leaves</option>
+                                <option value="Special Casual Leaves">Special Casual Leaves</option>
+                                <option value="Option Leaves">Option Leaves</option>
+                                {% endif %}
+                            </select>
                         </div>
                         <div class="form-group">
                             <textarea name="reason" placeholder="Reason for Leave" rows="3" required></textarea>
