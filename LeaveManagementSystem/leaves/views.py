@@ -2,7 +2,7 @@ from django.shortcuts import render
 from registration.models import Faculty
 from leaves.models import *
 import json
-from datetime import datetime,timedelta
+from datetime import datetime
 
 
 def leaveApplication(request):
@@ -24,8 +24,8 @@ def leaveApplication(request):
     params={"faculty" : current_faculty,"remaining_leaves" : remaining_leaves}
     return render(request,'leaves/leave_application.html',params)
 def leaveHistory(request):
-    current_faculty=Faculty.objects.get(user_id=request.user.pk)
-    params={"faculty" : current_faculty}
+    current_user_leaves=Leaves.objects.all().order_by('-applied_date')
+    params={"current_user_leaves" : current_user_leaves}
     return render(request,'leaves/leave_history.html',params)
 def reportGenerator(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)

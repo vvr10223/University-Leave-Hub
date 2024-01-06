@@ -2,6 +2,7 @@ from django.db import models
 from registration.models import *
 
 class Leaves(models.Model):
+    applied_date=models.DateTimeField(auto_now=True,null=True,blank=False)
     employee_id=models.ForeignKey(Faculty,on_delete=models.CASCADE,null=True,default=None)
     start_date = models.DateField(null=True,blank=False)
     end_date = models.DateField(null=True,blank=False)

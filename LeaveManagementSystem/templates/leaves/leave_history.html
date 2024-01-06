@@ -1,21 +1,107 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html>
 <title>Leave History</title>
 <body>
-<script>
-    {% for message in messages %}
-    alert("{{ message }}");
-    {% endfor %}
-</script>
-<a class="btn home-btn" href="{% url 'index' %}">Home</a>
-<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
-<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-{% endif %}
+
+
 <h1>This is Leave History</h1>
 <p>This is a paragraph.</p>
 
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave History - Leave Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        {% for message in messages %}
+        alert("{{ message }}");
+        {% endfor %}
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .history-container {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-container h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .leave-entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .leave-entry p {
+            margin: 0;
+        }
+
+        .no-history-message {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .nav-container a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="history-container">
+                    <h2>Leave History</h2>
+                    <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+                    <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
+                    <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+                    <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
+                    <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+                    {% endif %}
+                    {% for leave in current_user_leaves %}
+                        <div class="leave-entry">
+                            <p><strong>Start Date:</strong> {{ leave.start_date }}</p>
+                            <p><strong>End Date:</strong> {{ leave.end_date }}</p>
+                            <p><strong>Reason:</strong> {{ leave.reason }}</p>
+                            <p><strong>Status:</strong> {{ leave.status }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
