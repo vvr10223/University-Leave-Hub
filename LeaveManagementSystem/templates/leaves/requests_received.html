@@ -1,21 +1,195 @@
 <!DOCTYPE html>
 <html>
 <title>Requests Recieved</title>
+<head>
+    <style>
+            .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            }
+
+            .button-container h2 {
+            margin-right: 20px;
+            }
+
+            .button-container .buttons {
+            display: flex;
+            gap: 10px; 
+            }
+
+            .button-container .buttons .btn {
+            margin-left: 5px;
+            }
+
+            .button-container .btn {
+            margin-left: 10px;
+            }
+
+            .leave-table {
+            width: 100%;
+            border-width: 10px;
+            margin-top: 20px;
+            }
+
+            .leave-table th, .leave-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            }
+
+            .leave-table th {
+            background-color: rgb(21, 21, 150);
+            color: white;
+            }
+
+            .leave-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+            }
+
+            .approve-btn, .reject-btn {
+            padding: 5px 10px;
+            cursor: pointer;
+            }
+
+            .approve-btn {
+            background-color: #5cb85c;
+            color: #fff;
+            border-radius: 45%;
+            }
+
+            .approve-btn:hover {
+            background-color: rgb(12, 117, 12);
+            }
+
+            .reject-btn {
+            background-color: #ff0800;
+            color: #fff;
+            border-radius: 45%;
+            }
+
+            .reject-btn:hover {
+                background-color: rgb(130, 16, 16);
+            }
+
+            .btn {
+                background-color: rgb(6, 6, 162);
+                border: none;
+                padding: 5px 10px;
+                text-decoration: none;
+                border-radius: 15px;
+                cursor: pointer;
+            }
+            .btn a{
+                color: #fff;
+                text-decoration: none;
+            }
+            .btn:hover {
+                background-color: rgb(0, 0, 88);
+            }
+
+            
+    </style>
+</head>
 <body>
 <script>
     {% for message in messages %}
     alert("{{ message }}");
     {% endfor %}
 </script>
-<a class="btn home-btn" href="{% url 'index' %}">Home</a>
-<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
-<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-{% endif %}
-<h1>These are Requests Recieved</h1>
-<p>This is a paragraph.</p>
+<div class="button-container" style="padding-left: 2%; padding-right: 2%;">
+    <h2>Leave History</h2>
+    <div>
+    <button class="btn"><a href="{% url 'index' %}">Home</a></button>
+    <button class="btn"><a href="{% url 'leave_application' %}">Leave Application</a></button>
+    <button class="btn"><a href="{% url 'leave_history' %}">Leave History</a></button>
+
+    <button class="btn"><a href="{% url 'report_generator' %}">Report Generator</a></button>
+    <button class="btn"><a href="{% url 'requests_received' %}">Requests Received</a></button>
+    </div>
+  </div>
+
+
+  
+  {% if faculty.designation == "Principal" or faculty.designation == "HOD" %} {% endif %}
+
+
+<section id="requests_received">
+<div style="padding-left: 2%; padding-right: 2%;">
+    <h1>Requests Received</h1>
+    <table class="leave-table" id="requests-table">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Type of Staff</th>
+          <th>Type of Leave</th>
+          <th>Approve / Reject</th>
+        </tr>
+      </thead>
+        <tbody id="requests-body">
+        </tbody>
+        </table>
+    </section>
+  </div>
+  <script>
+    const tableBody = document.getElementById('requests-body');
+    const rows=[
+    { employeeId: '001', name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',   },
+      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
+      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
+      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
+    ];
+
+    function addRowsWithAnimation() {
+      rows.forEach((request, index) => {
+        setTimeout(() => {
+          const row = createRow(request);
+          tableBody.appendChild(row);
+          row.classList.add('fade-in');
+        }, index * 100);
+      });
+    }
+
+    function createRow(request) {
+      const row = document.createElement('tr');
+      for (const key in request) {
+        if (Object.hasOwnProperty.call(request, key)) {
+          const cell = document.createElement('td');
+          cell.textContent = request[key];
+          row.appendChild(cell);
+        }
+      }
+      const actionsCell = document.createElement('td');
+      const approveButton = document.createElement('button');
+      approveButton.textContent = 'Approve';
+      approveButton.classList.add('approve-btn');
+      const rejectButton = document.createElement('button');
+      rejectButton.textContent = 'Reject';
+      rejectButton.classList.add('reject-btn');
+      actionsCell.appendChild(approveButton);
+      actionsCell.appendChild(rejectButton);
+      row.appendChild(actionsCell);
+      return row;
+    }
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('approve-btn')) {
+        alert('Approved successfully');
+      } else if (event.target.classList.contains('reject-btn')) {
+        alert('Rejected successfully');
+      }
+      const row = event.target.closest('tr');
+        row.remove();
+    });
+
+    window.onload = addRowsWithAnimation;
+
+</script>
+
 
 </body>
 </html>

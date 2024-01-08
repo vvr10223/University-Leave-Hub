@@ -16,7 +16,7 @@ male_teaching_regular={
     "Casual Leaves" : 8,
     "Special Casual Leaves" : 7,
     "Academic Leaves" : 10,
-    "Option Holidays" : 5,
+    "Optional Holidays" : 5,
     "Medical Leaves" : 5,
 }
 male_teaching_contract={
@@ -25,7 +25,7 @@ male_teaching_contract={
 male_non_teaching_regular={
     "Casual Leaves" : 8,
     "Special Casual Leaves" : 7,
-    "Option Holidays" : 5,
+    "Optional Holidays" : 5,
     "Medical Leaves" : 5,
 }
 male_non_teaching_contract={
@@ -35,7 +35,7 @@ female_teaching_regular={
     "Casual Leaves" : 8,
     "Special Casual Leaves" : 7,
     "Academic Leaves" : 10,
-    "Option Holidays" : 5,
+    "Optional Holidays" : 5,
     "Medical Leaves" : 5,
 }
 female_teaching_contract={
@@ -44,7 +44,7 @@ female_teaching_contract={
 female_non_teaching_regular={
     "Casual Leaves" : 8,
     "Special Casual Leaves" : 7,
-    "Option Holidays" : 5,
+    "Optional Holidays" : 5,
     "Medical Leaves" : 5,
 }
 female_non_teaching_contract={

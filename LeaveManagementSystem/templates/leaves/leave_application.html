@@ -102,9 +102,12 @@
                         <a class="btn home-btn" href="{% url 'index' %}">Home</a>
                         <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
                         <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+                        <br>
                         {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+                        <br>
                         <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
                         <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+                        <br>
                         {% endif %}
                     </div>
 
@@ -133,7 +136,7 @@
                                 {% endif %}
                                 <option value="Medical Leaves">Medical Leaves</option>
                                 <option value="Special Casual Leaves">Special Casual Leaves</option>
-                                <option value="Option Leaves">Option Leaves</option>
+                                <option value="Optional Leaves">Optional Leaves</option>
                                 {% endif %}
                             </select>
                         </div>
