@@ -177,13 +177,19 @@
       return row;
     }
     document.addEventListener('click', function (event) {
-      if (event.target.classList.contains('approve-btn')) {
+      const isApproveBtn = event.target.classList.contains('approve-btn');
+      const isRejectBtn = event.target.classList.contains('reject-btn');
+
+      if (isApproveBtn) {
         alert('Approved successfully');
-      } else if (event.target.classList.contains('reject-btn')) {
+      } else if (isRejectBtn) {
         alert('Rejected successfully');
       }
-      const row = event.target.closest('tr');
+
+      if (isApproveBtn || isRejectBtn) {
+        const row = event.target.closest('tr');
         row.remove();
+      }
     });
 
     window.onload = addRowsWithAnimation;
