@@ -3,7 +3,7 @@ from registration.models import Faculty
 from leaves.models import *
 import json
 from datetime import datetime
-
+from django.contrib import messages
 
 def leaveApplication(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)
@@ -20,6 +20,7 @@ def leaveApplication(request):
         status=json.dumps(status_default)
         current_leave=Leaves(employee_id=employee_id,start_date=start_date,end_date=end_date,number_of_days=number_of_days,leave_type=leave_type,reason=reason,status=status)
         current_leave.save()
+        messages.success(request,"Leave applied successfully")
     remaining_leaves=json.loads(current_faculty.leave_balance)
     params={"faculty" : current_faculty,"remaining_leaves" : remaining_leaves}
     return render(request,'leaves/leave_application.html',params)
