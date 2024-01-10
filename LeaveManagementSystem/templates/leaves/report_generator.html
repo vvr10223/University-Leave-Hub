@@ -17,13 +17,13 @@
 <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
 {% endif %}
 <h1>Welcome {{ request.user.username }}</h1>
-<p>Please give required details of what you want.</p>
+<p>Select the catogry of Report you want :</p>
 <div class="form-group">
-    <label for="designation">Designation:</label>
-    <select name="designation" id="designation" required>
-        <option value="Registrar">Registrar</option>
-        <option value="Principal">Principal</option>
-        <option value="HOD">HOD</option>
+    <label for="report_catogery">Report Catogry</label>
+    <select name="report_catogery" id="report_catogery" required>
+        <option value="collegewise">College Wise</option>
+        <option value="departmentwise">Department Wise</option>
+        <option value="facultywise">Faculty Wise</option>
         <option value="Employee">Employee</option>
     </select>
 </div>
