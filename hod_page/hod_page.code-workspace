@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "hod_page",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "hod_page"
+	}
+}
