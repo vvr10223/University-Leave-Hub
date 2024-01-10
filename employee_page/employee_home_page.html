@@ -14,6 +14,7 @@
         }
 
         .top-nav {
+            height: 3vh;
             background-color: #72bcd9;
             color: rgb(61, 42, 132);
             text-align: center;
@@ -22,6 +23,7 @@
             position: fixed;
             width: 100%;
             top: 0;
+            z-index: 2;
         }
 
         .menu-btn {
@@ -29,7 +31,7 @@
             padding: 10px;
             position: fixed;
             top: 10px;
-            /* left: 10px; */
+            left: 10px;
             color: rgb(0, 0, 0);
             border: none;
             border-radius: 5px;
@@ -38,23 +40,19 @@
         }
 
         nav {
-            width: 250px; /* Set sidebar width to 10% */
-            height: 100%;
+            height: 4vh;
+            width: 100%;
             background-color: #d8bdff;
             position: fixed;
-            overflow-x: hidden;
-            padding-top: 70px; /* Adjusted for top navigation height */
-            z-index: 1;
-            left: -250px; /* Hidden by default */
-            transition: margin-left 0.3s;
+            top: 5.6vh;
+            align-items: center;
         }
 
         nav a {
-            padding: 15px 20px;
+            padding-left:3vh;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 1rem;
             color: rgb(13, 2, 72);
-            display: block;
         }
 
         .content {
@@ -146,7 +144,6 @@
 </head>
 <body>
 
-    <div class="menu-btn" onclick="toggleNav()">☰</div>
 
     <div class="top-nav">
         Jawaharlal Nehru Technological University Gurajada Vizianagaram
@@ -177,15 +174,6 @@
             <p>Count: 15</p>
         </div>
     </div>
-
-    <script>
-        function toggleNav() {
-            var sideNav = document.getElementById('sideNav');
-            var content = document.querySelector('.content');
-            content.classList.toggle('open');
-            sideNav.style.left = (content.classList.contains('open')) ? '0' : '-250px';
-        }
-    </script>
 
 </body>
 </html>
