@@ -44,36 +44,36 @@ def register(request):
         confirm_password=request.POST['confirm_password']
         if password!=confirm_password:
             messages.error(request,"Passwords do not match")
-        else:
-            current_user=User.objects.create_user(username,email,password)
-            current_user.save()
-            current_college=Colleges.objects.get(college_name=college_name)
-            dept_row=Department.objects.get(dept_name=department_name)
-            if gender=="male" and employment_type=="teaching" and employment_status=="regular":
-                leave_balance=json.dumps(male_teaching_regular)
-            elif gender=="male" and employment_type=="teaching" and employment_status=="contract":
-                leave_balance=json.dumps(male_teaching_contract)
-            elif gender=="male" and employment_type=="non_teaching" and employment_status=="regular":
-                leave_balance=json.dumps(male_non_teaching_regular)
-            elif gender=="male" and employment_type=="non_teaching" and employment_status=="contract":
-                leave_balance=json.dumps(male_non_teaching_contract)
-            elif gender=="female" and employment_type=="teaching" and employment_status=="regular":
-                leave_balance=json.dumps(female_teaching_regular)
-            elif gender=="female" and employment_type=="teaching" and employment_status=="contract":
-                leave_balance=json.dumps(female_teaching_contract)
-            elif gender=="female" and employment_type=="non_teaching" and employment_status=="regular":
-                leave_balance=json.dumps(female_non_teaching_regular)
-            elif gender=="female" and employment_type=="non_teaching" and employment_status=="contract":
-                leave_balance=json.dumps(female_non_teaching_contract)
-            current_faculty=Faculty(employee_id=employee_id,faculty_name=username,phone=phone,aadhar=aadhar,designation=designation,gender=gender,employment_type=employment_type,employment_status=employment_status,leave_balance=leave_balance,college_id=current_college,dept_id=dept_row,user_id=current_user)
-            current_faculty.save()
-            messages.success(request,"You are successfully registered")
-            subject="Welcome Email"
-            message="Hi {{ current_user.username }} !\nWe are glad to have you with Jntu Gv Leave Management System"
-            from_email=EMAIL_HOST_USER
-            receiversList=[current_user.email]
-            send_mail(subject=subject,message=message,from_email=from_email,recipient_list=receiversList,fail_silently=True)
-            return redirect('login')
+            return redirect('register')
+        current_college=Colleges.objects.get(college_name=college_name)
+        current_dept=Department.objects.get(dept_name=department_name)
+        if gender=="male" and employment_type=="teaching" and employment_status=="regular":
+            leave_balance=json.dumps(male_teaching_regular)
+        elif gender=="male" and employment_type=="teaching" and employment_status=="contract":
+            leave_balance=json.dumps(male_teaching_contract)
+        elif gender=="male" and employment_type=="non_teaching" and employment_status=="regular":
+            leave_balance=json.dumps(male_non_teaching_regular)
+        elif gender=="male" and employment_type=="non_teaching" and employment_status=="contract":
+            leave_balance=json.dumps(male_non_teaching_contract)
+        elif gender=="female" and employment_type=="teaching" and employment_status=="regular":
+            leave_balance=json.dumps(female_teaching_regular)
+        elif gender=="female" and employment_type=="teaching" and employment_status=="contract":
+            leave_balance=json.dumps(female_teaching_contract)
+        elif gender=="female" and employment_type=="non_teaching" and employment_status=="regular":
+            leave_balance=json.dumps(female_non_teaching_regular)
+        elif gender=="female" and employment_type=="non_teaching" and employment_status=="contract":
+            leave_balance=json.dumps(female_non_teaching_contract)
+        current_user=User.objects.create_user(username,email,password)
+        current_user.save()
+        current_faculty=Faculty(employee_id=employee_id,faculty_name=username,phone=phone,aadhar=aadhar,designation=designation,gender=gender,employment_type=employment_type,employment_status=employment_status,leave_balance=leave_balance,college_id=current_college,dept_id=current_dept,user_id=current_user)
+        current_faculty.save()
+        messages.success(request,"You are successfully registered")
+        subject="Welcome Email"
+        message="Hi {{ current_user.username }} !\nWe are glad to have you with Jntu Gv Leave Management System"
+        from_email=EMAIL_HOST_USER
+        receiversList=[current_user.email]
+        send_mail(subject=subject,message=message,from_email=from_email,recipient_list=receiversList,fail_silently=True)
+        return redirect('login')
     return render(request,'registration/register.html')
 def login(request):
     if request.method=="POST":

@@ -8,14 +8,25 @@
     {% endfor %}
 </script>
 <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+{% if faculty.designation != "Vice Chancellor" %}
 <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
 <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+{% endif %}
+{% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
 <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
 <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
 {% endif %}
-<h1>This is Report Generator Page</h1>
-<p>This is a paragraph.</p>
+<h1>Welcome {{ request.user.username }}</h1>
+<p>Please give required details of what you want.</p>
+<div class="form-group">
+    <label for="designation">Designation:</label>
+    <select name="designation" id="designation" required>
+        <option value="Registrar">Registrar</option>
+        <option value="Principal">Principal</option>
+        <option value="HOD">HOD</option>
+        <option value="Employee">Employee</option>
+    </select>
+</div>
 <button onclick="window.print()">Print as PDF</button>
 </body>
 </html>

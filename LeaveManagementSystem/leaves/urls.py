@@ -6,4 +6,6 @@ urlpatterns = [
     path('leave_history/',leaveHistory,name='leave_history'),
     path('report_generator',reportGenerator,name='report_generator'),
     path('requests_received',requestsReceived,name='requests_received'),
+    path('approve/',approve,name='approve'),
+    path('reject/',reject,name='reject'),
 ]

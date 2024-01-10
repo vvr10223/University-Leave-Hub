@@ -7,12 +7,14 @@
     alert("{{ message }}");
     {% endfor %}
 </script>
-<a href="{% url 'index' %}">Home</a>
-<a href="{% url 'leave_application' %}">Leave Application</a>
-<a href="{% url 'leave_history' %}">Leave History</a>
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
-<a href="{% url 'report_generator' %}">Report Generator</a>
-<a href="{% url 'requests_received' %}">Requests Recieved</a>
+<a class="btn home-btn" href="{% url 'index' %}">Home</a>
+{% if faculty.designation != "Vice Chancellor" %}
+<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
+<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+{% endif %}
+{% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
+<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
+<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
 {% endif %}
 <h1>This is Index Page</h1>
 <h2>Welcome, {{ request.user.username }}!</h2>

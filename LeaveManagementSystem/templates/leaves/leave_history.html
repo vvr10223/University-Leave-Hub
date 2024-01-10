@@ -1,14 +1,3 @@
-{% comment %} <!DOCTYPE html>
-<html>
-<title>Leave History</title>
-<body>
-
-
-<h1>This is Leave History</h1>
-<p>This is a paragraph.</p>
-
-</body>
-</html> {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,9 +74,11 @@
                 <div class="history-container">
                     <h2>Leave History</h2>
                     <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+                    {% if faculty.designation != "Vice Chancellor" %}
                     <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
                     <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
+                    {% endif %}
+                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
                     <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
                     <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
                     {% endif %}

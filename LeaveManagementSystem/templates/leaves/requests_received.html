@@ -1,4 +1,114 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave History - Leave Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        {% for message in messages %}
+        alert("{{ message }}");
+        {% endfor %}
+    </script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .history-container {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-container h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .leave-entry {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .leave-entry p {
+            margin: 0;
+        }
+
+        .no-history-message {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .nav-container a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .home-btn {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="history-container">
+                    <h2>Requests Recieved</h2>
+                    <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+                    {% if faculty.designation != "Vice Chancellor" %}
+                    <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
+                    <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
+                    {% endif %}
+                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
+                    <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
+                    <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+                    {% endif %}
+                    {% for leave in leaves_to_approve %}
+                        <div class="leave-entry">
+                            <p><strong>Employee ID : </strong> {{ leave.employee_id.employee_id }}</p>
+                            <p><strong>Name : </strong> {{ leave.employee_id.faculty_name }}</p>
+                            <p><strong>Employment Type : </strong> {{ leave.employee_id.employment_type }}</p>
+                            <p><strong>Employment Status : </strong> {{ leave.employee_id.employment_status }}</p>
+                            <p><strong>Start Date : </strong> {{ leave.start_date }}</p>
+                            <p><strong>End Date : </strong> {{ leave.end_date }}</p>
+                            <p><strong>Leave Type : </strong> {{ leave.leave_type }}</p>
+                            <p><strong>Reason : </strong> {{ leave.reason }}</p>
+                            <p><strong>Status : </strong> {{ leave.status }}</p>
+                            <a class="btn home-btn" href="{% url 'approve' %}?value_to_send={{ leave.pk }}">Approve</a>
+                            <a class="btn home-btn" href="{% url 'reject' %}?value_to_send={{ leave.pk }}">Reject</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+{% comment %} <!DOCTYPE html>
 <html>
 <title>Requests Recieved</title>
 <head>
@@ -104,23 +214,20 @@
     <button class="btn"><a href="{% url 'index' %}">Home</a></button>
     <button class="btn"><a href="{% url 'leave_application' %}">Leave Application</a></button>
     <button class="btn"><a href="{% url 'leave_history' %}">Leave History</a></button>
-
+    {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
     <button class="btn"><a href="{% url 'report_generator' %}">Report Generator</a></button>
     <button class="btn"><a href="{% url 'requests_received' %}">Requests Received</a></button>
+    {% endif %}
     </div>
-  </div>
-
-
+  </div> {% endcomment %}
   
-  {% if faculty.designation == "Principal" or faculty.designation == "HOD" %} {% endif %}
-
-
-<section id="requests_received">
+{% comment %} <section id="requests_received">
 <div style="padding-left: 2%; padding-right: 2%;">
     <h1>Requests Received</h1>
     <table class="leave-table" id="requests-table">
       <thead>
         <tr>
+          <th>Leave ID</th>
           <th>Employee ID</th>
           <th>Name</th>
           <th>Start Date</th>
@@ -137,18 +244,18 @@
     </section>
   </div>
   <script>
-    const tableBody = document.getElementById('requests-body');
-    const rows=[
-    { employeeId: '001', name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',   },
+    tableBody = document.getElementById('requests-body');
+    rows=[
+    { employeeId: '000', name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',   },
       { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
       { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
       { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
     ];
-
+    var rows = JSON.parse('{{ leave_rows|escapejs }}');
     function addRowsWithAnimation() {
       rows.forEach((request, index) => {
         setTimeout(() => {
-          const row = createRow(request);
+          row = createRow(request);
           tableBody.appendChild(row);
           row.classList.add('fade-in');
         }, index * 100);
@@ -177,13 +284,28 @@
       return row;
     }
     document.addEventListener('click', function (event) {
-      if (event.target.classList.contains('approve-btn')) {
+      const isApproveBtn = event.target.classList.contains('approve-btn');
+      const isRejectBtn = event.target.classList.contains('reject-btn');
+
+      if (isApproveBtn) {
+        const row = event.target.closest('tr');
+        fetch('/approve/', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              // Include any additional headers if needed
+          },
+          body: 'your_value=' + encodeURIComponent(5),
+      })
         alert('Approved successfully');
-      } else if (event.target.classList.contains('reject-btn')) {
+      } else if (isRejectBtn) {
         alert('Rejected successfully');
       }
-      const row = event.target.closest('tr');
+
+      if (isApproveBtn || isRejectBtn) {
+        const row = event.target.closest('tr');
         row.remove();
+      }
     });
 
     window.onload = addRowsWithAnimation;
@@ -192,4 +314,4 @@
 
 
 </body>
-</html>
+</html> {% endcomment %}

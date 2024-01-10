@@ -37,7 +37,7 @@
 
         .nav-container a {
             display: inline-block;
-            margin-right: 10px;
+            margin-right: 5px;
             color: #ffffff;
             text-decoration: none;
             font-weight: bold;
@@ -100,14 +100,13 @@
 
                     <div class="nav-container">
                         <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+                        {% if faculty.designation != "Vice Chancellor" %}
                         <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
                         <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-                        <br>
-                        {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
-                        <br>
+                        {% endif %}
+                        {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
                         <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
                         <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-                        <br>
                         {% endif %}
                     </div>
 
