@@ -288,6 +288,7 @@
       const isRejectBtn = event.target.classList.contains('reject-btn');
 
       if (isApproveBtn) {
+<<<<<<< HEAD
         const row = event.target.closest('tr');
         fetch('/approve/', {
           method: 'POST',
@@ -297,6 +298,8 @@
           },
           body: 'your_value=' + encodeURIComponent(5),
       })
+=======
+>>>>>>> 62e828c766da922f1b47f5029b21014d7e9e73d4
         alert('Approved successfully');
       } else if (isRejectBtn) {
         alert('Rejected successfully');
