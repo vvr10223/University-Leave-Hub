@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,6 @@
         }
 
         .history-container {
-            max-width: 800px;
-            margin: auto;
-            margin-top: 50px;
             padding: 20px;
             border: 1px solid #dcdcdc;
             border-radius: 5px;
@@ -26,18 +24,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-        }
-
-        .leave-entry {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            background-color: #f8f9fa;
-        }
-
-        .leave-entry p {
-            margin: 0;
         }
 
         .no-history-message {
@@ -60,36 +46,64 @@
             border-radius: 5px;
             padding: 10px 15px;
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .history-container {
+                padding: 10px;
+            }
+
+            .history-container h2 {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-container {
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <div class="history-container">
-                    <h2>
-                        Leave History
-                        <span class="nav-container">
-                            <a class="btn home-btn" href="./employee_home_page.html">Home</a>
-                        </span>
-                    </h2>
 
-                    {% if leave_history %}
+<body>
+    <div class="history-container">
+        <h2>
+            Leave History
+            <span class="nav-container">
+                <a class="btn home-btn" href="./employee_home_page.html">Home</a>
+            </span>
+        </h2>
+
+        <div class="table-responsive">
+            {% if leave_history %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <!-- Add any other fields you want to display -->
+                        </tr>
+                    </thead>
+                    <tbody>
                         {% for leave in leave_history %}
-                            <div class="leave-entry">
-                                <p><strong>Start Date:</strong> {{ leave.start_date }}</p>
-                                <p><strong>End Date:</strong> {{ leave.end_date }}</p>
-                                <p><strong>Reason:</strong> {{ leave.reason }}</p>
-                                <p><strong>Status:</strong> {{ leave.status }}</p>
+                            <tr>
+                                <td>{{ leave.start_date }}</td>
+                                <td>{{ leave.end_date }}</td>
+                                <td>{{ leave.reason }}</td>
+                                <td>{{ leave.status }}</td>
                                 <!-- Add any other fields you want to display -->
-                            </div>
+                            </tr>
                         {% endfor %}
-                    {% else %}
-                        <p class="no-history-message">No leave history available.</p>
-                    {% endif %}
-                </div>
-            </div>
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-history-message">No leave history available.</p>
+            {% endif %}
         </div>
     </div>
 </body>
+
 </html>
+
