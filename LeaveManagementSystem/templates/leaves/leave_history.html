@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leave History - Leave Management System</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        {% for message in messages %}
-        alert("{{ message }}");
-        {% endfor %}
-    </script>
     <style>
         body {
             background-color: #f8f9fa;
         }
 
         .history-container {
-            max-width: 800px;
-            margin: auto;
-            margin-top: 50px;
             padding: 20px;
             border: 1px solid #dcdcdc;
             border-radius: 5px;
@@ -31,18 +24,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-        }
-
-        .leave-entry {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            background-color: #f8f9fa;
-        }
-
-        .leave-entry p {
-            margin: 0;
         }
 
         .no-history-message {
@@ -65,34 +46,65 @@
             border-radius: 5px;
             padding: 10px 15px;
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .history-container {
+                padding: 10px;
+            }
+
+            .history-container h2 {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-container {
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 offset-md-1">
-                <div class="history-container">
-                    <h2>Leave History</h2>
-                    <a class="btn home-btn" href="{% url 'index' %}">Home</a>
-                    {% if faculty.designation != "Vice Chancellor" %}
-                    <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-                    <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-                    {% endif %}
-                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
-                    <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-                    <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-                    {% endif %}
-                    {% for leave in current_user_leaves %}
-                        <div class="leave-entry">
-                            <p><strong>Start Date:</strong> {{ leave.start_date }}</p>
-                            <p><strong>End Date:</strong> {{ leave.end_date }}</p>
-                            <p><strong>Reason:</strong> {{ leave.reason }}</p>
-                            <p><strong>Status:</strong> {{ leave.status }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+    <div class="history-container">
+        <h2>
+            Leave History
+            <span class="nav-container">
+                <a class="btn home-btn" href="{% url 'index' %}">Home</a>
+            </span>
+        </h2>
+
+        <div class="table-responsive">
+            {% if current_user_leaves %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <!-- Add any other fields you want to display -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for leave in current_user_leaves %}
+                            <tr>
+                                <td>{{ leave.start_date }}</td>
+                                <td>{{ leave.end_date }}</td>
+                                <td>{{ leave.reason }}</td>
+                                <td>{{ leave.status }}</td>
+                                <!-- Add any other fields you want to display -->
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="no-history-message">No leave history available.</p>
+            {% endif %}
         </div>
     </div>
 </body>
+
 </html>
+
+

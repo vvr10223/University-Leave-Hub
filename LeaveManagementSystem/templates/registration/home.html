@@ -58,7 +58,7 @@
         font-size: 18px;
         transition: color 0.3s ease-in-out;
         padding: 10px 15px;
-        border-radius: 5px;
+        border-radius: 25px;
         background-color: #000000;
     }
 
@@ -136,6 +136,11 @@
             }
         }
     </style>
+    <script>
+        {% for message in messages %}
+        alert("{{ message }}");
+        {% endfor %}
+    </script>
 </head>
 
 <body>

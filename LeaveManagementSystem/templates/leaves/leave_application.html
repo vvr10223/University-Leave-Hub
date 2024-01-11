@@ -105,14 +105,6 @@
 
                     <div class="nav-container">
                         <a class="btn home-btn" href="{% url 'index' %}">Home</a>
-                        {% if faculty.designation != "Vice Chancellor" %}
-                        <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-                        <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-                        {% endif %}
-                        {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
-                        <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-                        <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-                        {% endif %}
                     </div>
 
                     <h3>Apply for Leave</h3>

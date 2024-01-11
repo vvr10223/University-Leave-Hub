@@ -84,7 +84,17 @@ def login(request):
             auth_login(request,user)
             messages.success(request,"You are successfully logged in")
             current_faculty=Faculty.objects.get(user_id=user.pk)
-            params={"faculty" : current_faculty}
+            if current_faculty.designation=='Employee':
+                pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(status_default))
+            elif current_faculty.designation=='HOD':
+                pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(status_hod_accepted))
+            elif current_faculty.designation=='Principal':
+                pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(principal_status_default))
+            elif current_faculty.designation=='Registrar':
+                pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(registrar_status_default))
+            elif current_faculty.designation=='Vice Chancellor':
+                pending_leaves=None
+            params={"faculty" : current_faculty,"leave_balance" : json.loads(current_faculty.leave_balance),"pending_leaves" : pending_leaves}
             return render(request,'registration/index.html',params)
         else:
             messages.error(request,"Not Yet Registered")
@@ -92,7 +102,18 @@ def login(request):
     return render(request,'registration/login.html')
 def index(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)
-    params={"faculty" : current_faculty}
+    if current_faculty.designation=='Employee':
+        pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(status_default))
+    elif current_faculty.designation=='HOD':
+        pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(status_hod_accepted))
+    elif current_faculty.designation=='Principal':
+        pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(principal_status_default))
+    elif current_faculty.designation=='Registrar':
+        pending_leaves=Leaves.objects.filter(employee_id=current_faculty,status=json.dumps(registrar_status_default))
+    elif current_faculty.designation=='Vice Chancellor':
+        pending_leaves=None
+    params={"faculty" : current_faculty,"leave_balance" : json.loads(current_faculty.leave_balance),"pending_leaves" : pending_leaves}
+
     return render(request,'registration/index.html',params)
 def logout(request):
     auth_logout(request)

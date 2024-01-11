@@ -62,12 +62,18 @@
         .home-btn {
             background-color: #007bff;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             padding: 10px 15px;
         }
         #logo {
           width: 90px;
           margin-left : 350px /* Adjust the width as needed for smaller screens */
+      }
+      nav{
+        margin : 20px;
+      }
+      .options{
+        margin : 20px;
       }
     </style>
 </head>
@@ -77,17 +83,20 @@
             <div class="col-md-10 offset-md-1">
                 <div class="history-container">
                   <img src="/media/univlogo.jpeg" id=logo alt="Your Photo">
+                  <nav>
                     <h2>Requests Recieved</h2>
                     <a class="btn home-btn" href="{% url 'index' %}">Home</a>
                     {% if faculty.designation != "Vice Chancellor" %}
                     <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
                     <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
                     {% endif %}
-                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor"%}
+                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %}
                     <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-                    <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
+                    <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Received</a>
                     {% endif %}
+                  </nav>
                     {% for leave in leaves_to_approve %}
+
                         <div class="leave-entry">
                             <p><strong>Employee ID : </strong> {{ leave.employee_id.employee_id }}</p>
                             <p><strong>Name : </strong> {{ leave.employee_id.faculty_name }}</p>
@@ -98,8 +107,10 @@
                             <p><strong>Leave Type : </strong> {{ leave.leave_type }}</p>
                             <p><strong>Reason : </strong> {{ leave.reason }}</p>
                             <p><strong>Status : </strong> {{ leave.status }}</p>
+                            <div class="options">
                             <a class="btn home-btn" href="{% url 'approve' %}?value_to_send={{ leave.pk }}">Approve</a>
                             <a class="btn home-btn" href="{% url 'reject' %}?value_to_send={{ leave.pk }}">Reject</a>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
@@ -109,217 +120,3 @@
 
 </body>
 </html>
-
-
-
-
-{% comment %} <!DOCTYPE html>
-<html>
-<title>Requests Recieved</title>
-<head>
-    <style>
-            .button-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            }
-
-            .button-container h2 {
-            margin-right: 20px;
-            }
-
-            .button-container .buttons {
-            display: flex;
-            gap: 10px; 
-            }
-
-            .button-container .buttons .btn {
-            margin-left: 5px;
-            }
-
-            .button-container .btn {
-            margin-left: 10px;
-            }
-
-            .leave-table {
-            width: 100%;
-            border-width: 10px;
-            margin-top: 20px;
-            }
-
-            .leave-table th, .leave-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-            }
-
-            .leave-table th {
-            background-color: rgb(21, 21, 150);
-            color: white;
-            }
-
-            .leave-table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-            }
-
-            .approve-btn, .reject-btn {
-            padding: 5px 10px;
-            cursor: pointer;
-            }
-
-            .approve-btn {
-            background-color: #5cb85c;
-            color: #fff;
-            border-radius: 45%;
-            }
-
-            .approve-btn:hover {
-            background-color: rgb(12, 117, 12);
-            }
-
-            .reject-btn {
-            background-color: #ff0800;
-            color: #fff;
-            border-radius: 45%;
-            }
-
-            .reject-btn:hover {
-                background-color: rgb(130, 16, 16);
-            }
-
-            .btn {
-                background-color: rgb(6, 6, 162);
-                border: none;
-                padding: 5px 10px;
-                text-decoration: none;
-                border-radius: 15px;
-                cursor: pointer;
-            }
-            .btn a{
-                color: #fff;
-                text-decoration: none;
-            }
-            .btn:hover {
-                background-color: rgb(0, 0, 88);
-            }
-
-            
-    </style>
-</head>
-<body>
-<script>
-    {% for message in messages %}
-    alert("{{ message }}");
-    {% endfor %}
-</script>
-<div class="button-container" style="padding-left: 2%; padding-right: 2%;">
-    <h2>Leave History</h2>
-    <div>
-    <button class="btn"><a href="{% url 'index' %}">Home</a></button>
-    <button class="btn"><a href="{% url 'leave_application' %}">Leave Application</a></button>
-    <button class="btn"><a href="{% url 'leave_history' %}">Leave History</a></button>
-    {% if faculty.designation == "Principal" or faculty.designation == "HOD" %}
-    <button class="btn"><a href="{% url 'report_generator' %}">Report Generator</a></button>
-    <button class="btn"><a href="{% url 'requests_received' %}">Requests Received</a></button>
-    {% endif %}
-    </div>
-  </div> {% endcomment %}
-  
-{% comment %} <section id="requests_received">
-<div style="padding-left: 2%; padding-right: 2%;">
-    <h1>Requests Received</h1>
-    <table class="leave-table" id="requests-table">
-      <thead>
-        <tr>
-          <th>Leave ID</th>
-          <th>Employee ID</th>
-          <th>Name</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Reason</th>
-          <th>Type of Staff</th>
-          <th>Type of Leave</th>
-          <th>Approve / Reject</th>
-        </tr>
-      </thead>
-        <tbody id="requests-body">
-        </tbody>
-        </table>
-    </section>
-  </div>
-  <script>
-    tableBody = document.getElementById('requests-body');
-    rows=[
-    { employeeId: '000', name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',   },
-      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
-      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
-      { employeeId: '002',name: "Emp1", startDate: '2024-01-10', endDate: '2024-01-15', reason: 'Vacation', typeOfStaff: 'Teaching',  typeOfLeave: 'Maternity',  },
-    ];
-    var rows = JSON.parse('{{ leave_rows|escapejs }}');
-    function addRowsWithAnimation() {
-      rows.forEach((request, index) => {
-        setTimeout(() => {
-          row = createRow(request);
-          tableBody.appendChild(row);
-          row.classList.add('fade-in');
-        }, index * 100);
-      });
-    }
-
-    function createRow(request) {
-      const row = document.createElement('tr');
-      for (const key in request) {
-        if (Object.hasOwnProperty.call(request, key)) {
-          const cell = document.createElement('td');
-          cell.textContent = request[key];
-          row.appendChild(cell);
-        }
-      }
-      const actionsCell = document.createElement('td');
-      const approveButton = document.createElement('button');
-      approveButton.textContent = 'Approve';
-      approveButton.classList.add('approve-btn');
-      const rejectButton = document.createElement('button');
-      rejectButton.textContent = 'Reject';
-      rejectButton.classList.add('reject-btn');
-      actionsCell.appendChild(approveButton);
-      actionsCell.appendChild(rejectButton);
-      row.appendChild(actionsCell);
-      return row;
-    }
-    document.addEventListener('click', function (event) {
-      const isApproveBtn = event.target.classList.contains('approve-btn');
-      const isRejectBtn = event.target.classList.contains('reject-btn');
-
-      if (isApproveBtn) {
-<<<<<<< HEAD
-        const row = event.target.closest('tr');
-        fetch('/approve/', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              // Include any additional headers if needed
-          },
-          body: 'your_value=' + encodeURIComponent(5),
-      })
-=======
->>>>>>> 62e828c766da922f1b47f5029b21014d7e9e73d4
-        alert('Approved successfully');
-      } else if (isRejectBtn) {
-        alert('Rejected successfully');
-      }
-
-      if (isApproveBtn || isRejectBtn) {
-        const row = event.target.closest('tr');
-        row.remove();
-      }
-    });
-
-    window.onload = addRowsWithAnimation;
-
-</script>
-
-
-</body>
-</html> {% endcomment %}

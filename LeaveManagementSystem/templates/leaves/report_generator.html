@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title>Report Generator</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <body>
     <style>
         .form-group{
@@ -22,50 +23,197 @@
           th {
             background-color: #f2f2f2;
           }
-          a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
-            transition: color 0.3s ease-in-out;
-            font-size: 20px; /* Adjust the font size as needed */
-            padding: 10px 20px;
-            background-color: #007bff; /* Blue background color */
-            border-radius: 5px;
-            display: inline-block;
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4; /* Set a light background color */
+            height: 100vh; /* Set height to 100% of viewport height */
+            color: #333; /* Set text color to a dark gray */
         }
 
-        a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff; /* Set a blue background color */
+            color: #fff; /* Set text color to white */
+            display: flex;
+            align-items: center; /* Center content vertically */
+        }
+
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #logo {
-          width: 100px; /* Adjust the width as needed for smaller screens */
-          margin-left :600px;
-      }
+            width: 120px; /* Adjust the width as needed */
+            height: 120px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            color: #fff;
+            margin: 15px; /* Remove default margin for better alignment */
+        }
+
+        nav {
+        text-align: center;
+        background-color: #0056b3; /* Darker blue for navigation bar */
+        height: 50px;
+        display: flex;
+        align-items: center; /* Center items vertically */
+        justify-content: flex-start; /* Align items to the right */
+        padding-right: 20px; /* Adjust right padding for better spacing */
+        margin-bottom: 25px
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 18px;
+        transition: color 0.3s ease-in-out;
+        padding: 10px 15px;
+        border-radius: 25px;
+        background-color: #000000;
+    }
+
+    nav a:hover {
+        color: #000000; /* Change color on hover */
+        background-color: #088ae8;
+    }
+
+        section.leave_balance {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 20px ;
+            padding: 20px;
+            background-color: #fff; /* White background for content section */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        section.pending_leaves {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 20px ;
+            padding: 20px;
+            background-color: #fff; /* White background for content section */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button{
+          margin : 10px
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            margin-left: 40px;
+        }
+        section{
+          padding : 20px;
+        }
+        .form-group{
+
+        }
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px); /* Start from left */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0); /* End at the original position */
+            }
+        }
+
+        @keyframes fadeInFromRight{
+            from {
+                opacity: 0;
+                transform: translateX(20px); /* Start from Right */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0); /* End at the original position */
+            }
+        }
+
+        img {
+            width: 100%;
+            max-width: 800px; /* Set a maximum width for responsiveness */
+            height: auto;
+            border-radius: 5px; /* Optional: Add border-radius to the image */
+             /* Add spacing above the image */
+        }
+        .plots{
+          display : flex;
+          justify : flex-start;
+          margin : 20px;
+        }
+        img.plot{
+          width : 40%;
+          margin : 20px;
+        }
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            nav a {
+                font-size: 16px;
+            }
+
+            #logo {
+                width: 30px;
+            }
+
+            img {
+                margin-top: 20px; /* Add spacing above the image on smaller screens */
+            }
+        }
+    </style>
+
     </style>
 <script>
     {% for message in messages %}
     alert("{{ message }}");
     {% endfor %}
 </script>
-<a class="btn home-btn" href="{% url 'index' %}">Home</a>
-{% if faculty.designation != "Vice Chancellor" %}
-<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-{% endif %}
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %}
-<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-{% endif %}
-<br>
-<img src="/media/univlogo.jpeg" id=logo alt="Your Photo">
-<h1>Welcome {{ request.user.username }}</h1>
-<h2>Select the options to Generate Report :</h2>
+<header class="center">
+  <img src="https://dhondi.ai/logos/jntugv.png" alt="University Logo" id="logo">
+  <h1>Jawaharlal Nehru Technological University - Gurajada Vizianagaram <br>Employee Leave Management System</h1>
+</header>
+
+<nav>
+  <a href="{% url 'index' %}">Home</a>
+  {% if faculty.designation != "Vice Chancellor" %}
+  <a href="{% url 'leave_application' %}">Leave Application</a>
+  <a href="{% url 'leave_history' %}">Leave History</a>
+  {% endif %}
+  {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %}
+  <a href="{% url 'report_generator' %}">Report Generator</a>
+  <a href="{% url 'requests_received' %}">Requests Received</a>
+  {% endif %}
+</nav>
+<section>
+<h2>Welcome {{ request.user.username }}({{ faculty.designation }}) !</h2>
 <form class="leave-form" method="post" action="{% url 'report_generator' %}">
     {% csrf_token %}
-{% if faculty.designation == "Vice Chancellor" or faculty.designation == "Registrar" %}
+{% if faculty.designation != "HOD" %}
+<h3>Select the options to Generate Report :</h3>
+{% endif %}
+{% if faculty.designation != "HOD" and faculty.designation != "Principal"%}
 <div class="form-group">
-    <label for="college"><h3>Colleges :</h3></label>
+    <label for="college"><h5>Colleges :</h5></label>
     <select name="college" id="college" required>
         <option value="all_colleges">All Colleges</option>
         {% for college in colleges %}
@@ -76,22 +224,27 @@
 {% endif %}
 {% if faculty.designation != 'HOD' %}
 <div class="form-group">
-    <label for="department"><h3>Departments :</h3></label>
+    <label for="department"><h5>Departments :</h5></label>
     <select name="department" id="department" required>
         <option value="all_departments">All Departments</option>
         {% for dept in departments %}
-        <option value={{ dept.dept_name }}>{{ dept.dept_name.upper }}</option>
+        <option value="{{ dept.dept_name }}">{{ dept.dept_name }}</option>
         {% endfor %}
     </select>
 </div>
 {% endif %}
-<button type="submit" class="btn btn-primary">submit</button>
+{% if faculty.designation == 'HOD' %}
+<h3>Please click get details button to get report on {{ faculty.dept_id.dept_name }} department:</h3>
+<button type="submit" class="btn btn-primary">Get Details</button>
+{% else %}
+<button type="submit" class="btn btn-primary">Submit</button>
+{% endif %}
 </form>
 </head>
 <body>
 
 <h2>Requested Records</h2>
-
+<div class="table-responsive">
 <table>
   <thead>
     <tr>
@@ -116,9 +269,14 @@
     {% endfor %}
 </tbody>
 </table>
-<img src="{{ image_path }}">
+</div>
+<div class="plots">
+<h3>Bar plots :</h3>
+<img class="plot" src="{{ image_path }}">
+</div>
 </body>
 </html>
 <button onclick="window.print()">Print as PDF</button>
+</section>
 </body>
 </html>

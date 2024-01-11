@@ -67,7 +67,7 @@ def reportGenerator(request):
                     print(rows)
             elif college_name == 'all_colleges' and dept_name != 'all_departments':
                 with connection.cursor() as cursor:
-                    cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where dept_name=%s and status= %s or status=%s or status=%s group by employee_id,year;",[dept_name,college_name,json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
+                    cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where dept_name=%s and status= %s or status=%s or status=%s group by employee_id,year;",[dept_name,json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
                     rows = cursor.fetchall()
                     print(rows)
             elif college_name != 'all_colleges' and dept_name != 'all_departments':
@@ -144,8 +144,8 @@ def approve(request):
          leave_balance["variable"][leave_type]-=1
     else:
         leave_balance[leave_type]-=1
-    current_faculty.leave_balance=json.dumps(leave_balance)
-    current_faculty.save()
+    leave_faculty.leave_balance=json.dumps(leave_balance)
+    leave_faculty.save()
     print(current_faculty.leave_balance)
     messages.success(request,"Leave successfully approved")
     return redirect('requests_received')
