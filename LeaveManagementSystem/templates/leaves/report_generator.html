@@ -2,6 +2,27 @@
 <html>
 <title>Report Generator</title>
 <body>
+    <style>
+        .form-group{
+            margin-right : 50px;
+            display : inline-block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+      
+          th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+      
+          th {
+            background-color: #f2f2f2;
+          }
+    </style>
 <script>
     {% for message in messages %}
     alert("{{ message }}");
@@ -17,16 +38,61 @@
 <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
 {% endif %}
 <h1>Welcome {{ request.user.username }}</h1>
-<p>Select the catogry of Report you want :</p>
+<h2>Select the options to Generate Report :</h2>
+<form class="leave-form" method="post" action="{% url 'report_generator' %}">
+    {% csrf_token %}
 <div class="form-group">
-    <label for="report_catogery">Report Catogry</label>
-    <select name="report_catogery" id="report_catogery" required>
-        <option value="collegewise">College Wise</option>
-        <option value="departmentwise">Department Wise</option>
-        <option value="facultywise">Faculty Wise</option>
-        <option value="Employee">Employee</option>
+    <label for="college"><h3>Colleges :</h3></label>
+    <select name="college" id="college" required>
+        <option value="all_colleges">All Colleges</option>
+        {% for college in colleges %}
+        <option value={{ college.college_name }}>{{ college.college_name.upper }}</option>
+        {% endfor %}
     </select>
 </div>
+<div class="form-group">
+    <label for="department"><h3>Departments :</h3></label>
+    <select name="department" id="department" required>
+        <option value="all_departments">All Departments</option>
+        {% for dept in departments %}
+        <option value={{ dept.dept_name }}>{{ dept.dept_name.upper }}</option>
+        {% endfor %}
+    </select>
+</div>
+<button type="submit" class="btn btn-primary">submit</button>
+</form>
+</head>
+<body>
+
+<h2>Requested Records</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Employee ID</th>
+      <th>EmployeeName</th>
+      <th>College Name</th>
+      <th>Department Name</th>
+      <th>Total Leaves</th>
+    </tr>
+  </thead>
+<tbody>
+    {% for row in rows %}
+    <tr>
+      <td>{{ row.0 }}</td>
+      <td>{{ row.1 }}</td>
+      <td>{{ row.2 }}</td>
+      <td>{{ row.3 }}</td>
+      <td>{{ row.4 }}</td>
+      <td>{{ row.5 }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+<img src="{{ image_path }}" alt="Matplotlib Plot">
+</body>
+</html>
 <button onclick="window.print()">Print as PDF</button>
 </body>
 </html>

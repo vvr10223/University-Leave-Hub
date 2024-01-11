@@ -5,7 +5,10 @@ import json
 from datetime import datetime
 from django.contrib import messages
 from django.utils import timezone
-from django.http import HttpResponse
+from django.db import connection
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
 
 def leaveApplication(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)
@@ -43,7 +46,44 @@ def leaveHistory(request):
     return render(request,'leaves/leave_history.html',params)
 def reportGenerator(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)
-    params={"faculty" : current_faculty}
+    colleges=Colleges.objects.all()
+    departments=Department.objects.all()
+    if request.method=='POST':
+        college_name=request.POST['college']
+        dept_name=request.POST['department']
+        if college_name=='all_colleges' and dept_name=='all_departments':
+            with connection.cursor() as cursor:
+                cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where status= %s or status=%s or status=%s group by employee_id,year",[json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
+                rows = cursor.fetchall()
+                print(rows)
+        elif college_name != 'all_colleges' and dept_name=='all_departments':
+            with connection.cursor() as cursor:
+                cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where college_name=%s and status= %s or status=%s or status=%s group by employee_id,year;",[college_name,json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
+                rows = cursor.fetchall()
+                print(rows)
+        elif college_name == 'all_colleges' and dept_name != 'all_departments':
+            with connection.cursor() as cursor:
+                cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where dept_name=%s and status= %s or status=%s or status=%s group by employee_id,year;",[dept_name,college_name,json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
+                rows = cursor.fetchall()
+                print(rows)
+        elif college_name != 'all_colleges' and dept_name != 'all_departments':
+            with connection.cursor() as cursor:
+                cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where dept_name=%s and college_name=%s and status= %s or status=%s or status=%s group by employee_id,year;",[dept_name,college_name,json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
+                rows = cursor.fetchall()
+                print(rows)
+        df=pd.DataFrame(rows,columns=['Year','EmployeeID','EmployeeName','CollegeName','DepartmentName','TotalLeaves'])
+        employee_ids=df.EmployeeID.unique()
+        print(employee_ids)
+        for employee_id in employee_ids:
+            df_r=df[df['EmployeeID'] == employee_id]
+            fig, ax = plt.subplots()
+            ax.scatter(df_r.Year,df_r.TotalLeaves,color='blue')
+        image_path = os.path.join('media', 'matplotlib_plot.png')
+        plt.savefig(image_path)
+        plt.close(fig)
+        params={"faculty" : current_faculty,"colleges" : colleges,"departments" : departments,'rows' : rows,'image_path': image_path}
+        return render(request,'leaves/report_generator.html',params)
+    params={"faculty" : current_faculty,"colleges" : colleges,"departments" : departments}
     return render(request,'leaves/report_generator.html',params)
 def requestsReceived(request):
     current_faculty=Faculty.objects.get(user_id=request.user.pk)

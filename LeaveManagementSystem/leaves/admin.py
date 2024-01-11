@@ -1,3 +1,5 @@
 from django.contrib import admin
+from leaves.models import *
+from registration.models import *
 
-# Register your models here.
+admin.site.register(Leaves)
