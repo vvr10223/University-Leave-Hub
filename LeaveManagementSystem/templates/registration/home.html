@@ -24,9 +24,14 @@
             align-items: center; /* Center content vertically */
         }
 
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         #logo {
-            width: 50px; /* Adjust the width as needed */
-            height: auto;
+            width: 120px; /* Adjust the width as needed */
+            height: 120px;
             margin-right: 10px;
         }
 
@@ -36,27 +41,31 @@
         }
 
         nav {
-            text-align: center;
-            background-color: #0056b3; /* Darker blue for navigation bar */
-            padding: 10px 0;
-        }
+        text-align: center;
+        background-color: #0056b3; /* Darker blue for navigation bar */
+        height: 50px;
+        display: flex;
+        align-items: center; /* Center items vertically */
+        justify-content: flex-end; /* Align items to the right */
+        padding-right: 20px; /* Adjust right padding for better spacing */
+    }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            font-size: 18px;
-            transition: color 0.3s ease-in-out;
-            padding: 10px 15px;
-            border-radius: 5px;
-            background-color: #000000;
-        }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 18px;
+        transition: color 0.3s ease-in-out;
+        padding: 10px 15px;
+        border-radius: 5px;
+        background-color: #000000;
+    }
 
-        nav a:hover {
-            color: #ffd700; /* Change color on hover */
-            background-color: #0056b3;
-        }
+    nav a:hover {
+        color: #000000; /* Change color on hover */
+        background-color: #088ae8;
+    }
 
         section {
             width: 100%;
@@ -83,7 +92,7 @@
             max-width: 800px; /* Set a maximum width for responsiveness */
             height: auto;
             border-radius: 5px; /* Optional: Add border-radius to the image */
-            margin-top: 20px; /* Add spacing above the image */
+             /* Add spacing above the image */
         }
 
         @media only screen and (max-width: 600px) {
@@ -108,9 +117,9 @@
 
 <body>
 
-    <header>
+    <header class="center">
         <img src="https://dhondi.ai/logos/jntugv.png" alt="University Logo" id="logo">
-        <h1>Jawaharlal Nehru Technological University - Gurajada Vizianagaram Employee Leave Management System</h1>
+        <h1>Jawaharlal Nehru Technological University - Gurajada Vizianagaram <br>Employee Leave Management System</h1>
     </header>
 
     <nav>
