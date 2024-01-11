@@ -85,6 +85,29 @@
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 15px;
+            margin-left: 40px;
+        }
+
+        @keyframes fadeInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px); /* Start from left */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0); /* End at the original position */
+            }
+        }
+
+        @keyframes fadeInFromRight{
+            from {
+                opacity: 0;
+                transform: translateX(20px); /* Start from Right */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0); /* End at the original position */
+            }
         }
 
         img {
@@ -128,13 +151,22 @@
     </nav>
 
     <section>
-        <div>
-            <p>Welcome to the Jawaharlal Nehru Technological University - Gurajada Vizianagaram Employee Leave Management System. This system streamlines the leave application and approval process, providing a seamless experience for both employees and administrators.</p>
-            <p>If you have any questions or need assistance, feel free to explore the available features or contact our support team.</p>
-            <p>Our system allows employees to submit leave requests conveniently through the online portal. Once submitted, the requests are promptly reviewed by supervisors or administrators, ensuring a quick and efficient approval process. You can track the status of your leave applications and view your leave history for better planning.</p>
-            <p>For administrators, the system offers comprehensive reporting features through the Report Generator. Generate insightful reports on leave trends, department-wise statistics, and more. Stay informed and make data-driven decisions to optimize workforce management.</p>
+        <div class="center">
+            <img src="https://th.bing.com/th/id/OIP.1V7NlkIdwcJQOuiRqenAYAHaEp?rs=1&pid=ImgDetMain" alt="Description of the photo" style="animation: fadeInFromRight 1s;">
+            <p style="animation: fadeInFromLeft 1s;">Welcome to the Jawaharlal Nehru Technological University - Gurajada Vizianagaram Employee Leave Management System. This system streamlines the leave application and approval process, providing a seamless experience for both employees and administrators.
+            If you have any questions or need assistance, feel free to explore the available features or contact our support team.
+            </p>
         </div>
-        <img src="https://th.bing.com/th/id/OIP.1V7NlkIdwcJQOuiRqenAYAHaEp?rs=1&pid=ImgDetMain" alt="Description of the photo">
+
+        <div class="center">
+            <p style="animation: fadeInFromRight 1s;">Feel the calmness of leaves as you manage your time. Submit leave requests effortlessly and embrace the balance between work and personal life.</p>
+            <img src="https://th.bing.com/th/id/OIP.jI3FwdZg_OzrXLhus5rt1QAAAA?rs=1&pid=ImgDetMain" alt="Description of the photo" style="animation: fadeInFromLeft 1s;">
+        </div>
+        <div class="center">
+            <img src="https://www.officetimer.com/wp-content/uploads/2019/11/Leave-Management-System.png" alt="Leaves Image for Reports" style="animation: fadeInFromLeft 1s;">
+            <p style="animation: fadeInFromRight 1s;">Explore insightful leave reports with our Report Generator. Gain a deeper understanding of leave trends, department-wise statistics, and make informed decisions to optimize workforce management.</p>
+        </div>
+        
     </section>
 
 </body>
