@@ -78,6 +78,7 @@ def reportGenerator(request):
             df_r=df[df['EmployeeID'] == employee_id]
             fig, ax = plt.subplots()
             ax.scatter(df_r.Year,df_r.TotalLeaves,color='blue')
+            ax.plot(df_r.Year,df_r.TotalLeaves,color='blue')
         image_path = os.path.join('media', 'matplotlib_plot.png')
         plt.savefig(image_path)
         plt.close(fig)
