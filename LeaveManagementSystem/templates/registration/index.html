@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Employee Leave Management System</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: url('https://www.yuvamind.com/colleges/images/college/jntu-gv-college-of-engineering-campus.png') no-repeat;
-            background-size: cover;
-            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4; /* Set a light background color */
             height: 100vh; /* Set height to 100% of viewport height */
-            color: #000000; /* Set text color to black */
+            color: #333; /* Set text color to dark gray */
         }
 
         header {
             text-align: center;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: #007bff; /* Set a blue background color */
+            color: #fff; /* Set text color to white */
             display: flex;
             align-items: center; /* Center content vertically */
         }
@@ -31,32 +31,57 @@
         }
 
         h1 {
-            color: #000000;
+            color: #fff;
             margin: 0; /* Remove default margin for better alignment */
         }
 
+        nav {
+            text-align: center;
+            background-color: #0056b3; /* Darker blue for navigation bar */
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #ffd700; /* Change color on hover */
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* White background for content section */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         p {
-            color: #ffffff;
             font-size: 18px;
             line-height: 1.6;
-            margin: 20px;
+            margin-bottom: 15px;
+            color: #333; /* Set text color to dark gray */
         }
 
-        a {
-            color: #ffffff;
+        span.logout {
+            cursor: pointer;
+            color: #fff;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 15px;
             font-weight: bold;
+            font-size: 18px;
             transition: color 0.3s ease-in-out;
-            font-size: 20px; /* Adjust the font size as needed */
-            padding: 10px 20px;
-            background-color: #007bff; /* Blue background color */
-            border-radius: 5px;
-            display: inline-block;
         }
 
-        a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+        span.logout:hover {
+            color: #ffd700; /* Change color on hover */
         }
 
         @media only screen and (max-width: 600px) {
@@ -64,61 +89,56 @@
                 font-size: 24px;
             }
 
-            p {
+            nav a {
                 font-size: 16px;
             }
 
             #logo {
-                width: 30px; /* Adjust the width as needed for smaller screens */
-            }
-
-            a {
-                font-size: 18px; /* Adjust the font size for smaller screens */
+                width: 30px;
             }
         }
     </style>
 </head>
+
 <body>
 
-<header>
-<img src="/media/univlogo.jpeg" id=logo alt="Your Photo">    <h1>Employee Leave Management System</h1>
-    <span><a href="{% url 'logout' %}">logout</a></span>
-</header>
+    <header>
+        <img src="./WhatsApp Image 2024-01-11 at 15.15.06.jpeg" alt="University Logo" id="logo">
+        <h1>Employee Leave Management System</h1>
+        <span class="logout" onclick="logout()">Logout</span>
+    </header>
 
-<script>
-    {% for message in messages %}
-    alert("{{ message }}");
-    {% endfor %}
-</script>
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        {% if faculty.designation != "Vice Chancellor" %}
+        <a href="{% url 'leave_application' %}">Leave Application</a>
+        <a href="{% url 'leave_history' %}">Leave History</a>
+        {% endif %}
+        {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %}
+        <a href="{% url 'report_generator' %}">Report Generator</a>
+        <a href="{% url 'requests_received' %}">Requests Received</a>
+        {% endif %}
+    </nav>
 
-<nav>
-<a class="btn home-btn" href="{% url 'index' %}">Home</a>
-{% if faculty.designation != "Vice Chancellor" %}
-<a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
-<a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
-{% endif %}
-{% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %}
-<a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
-<a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
-{% endif %}
-</nav>
-<h2>Welcome, {{ request.user.username }}!</h2>
-<p>Welcome to the Employee Leave Management System. This system streamlines the leave application and approval process, providing a seamless experience for both employees and administrators.</p>
-<p>If you have any questions or need assistance, feel free to explore the available features or contact our support team.</p>
-<p>Our system allows employees to submit leave requests conveniently through the online portal. Once submitted, the requests are promptly reviewed by supervisors or administrators, ensuring a quick and efficient approval process. You can track the status of your leave applications and view your leave history for better planning.
-</p>
-<p> For administrators, the system offers comprehensive reporting features through the Report Generator. Generate insightful reports on leave trends, department-wise statistics, and more. Stay informed and make data-driven decisions to optimize workforce management.
-</p>
-<p>  The Requests Received section provides a centralized view of pending leave requests, allowing supervisors and administrators to manage approvals and denials effectively. This feature helps in maintaining a balanced workflow within the organization.
-</p>
-<p> We understand the importance of timely communication. Our system sends automated notifications at each stage of the leave process, keeping everyone informed. Whether your leave request is approved or requires additional information, you'll receive timely updates.
-</p>
-<p>Explore the user-friendly interface to navigate through the various sections effortlessly. The Home page provides quick access to essential features, and the navigation bar simplifies movement across different modules.</p>
-<p>If you encounter any issues or have questions about using the system, our dedicated support team is here to assist you. Contact us through the available channels, and we'll ensure a swift resolution to your queries.</p>
-<section>
-    <!-- <h1>This is the Home Page</h1> -->
-    <!-- <p>This is a paragraph describing your university and providing information about the home page.</p> -->
-</section>
+    <section>
+        <h2>Welcome, {{ request.user.username }}!</h2>
+        <p>Welcome to the Employee Leave Management System. This system streamlines the leave application and approval process, providing a seamless experience for both employees and administrators.</p>
+        <p>If you have any questions or need assistance, feel free to explore the available features or contact our support team.</p>
+        <p>Our system allows employees to submit leave requests conveniently through the online portal. Once submitted, the requests are promptly reviewed by supervisors or administrators, ensuring a quick and efficient approval process. You can track the status of your leave applications and view your leave history for better planning.</p>
+        <p>For administrators, the system offers comprehensive reporting features through the Report Generator. Generate insightful reports on leave trends, department-wise statistics, and more. Stay informed and make data-driven decisions to optimize workforce management.</p>
+        <p>The Requests Received section provides a centralized view of pending leave requests, allowing supervisors and administrators to manage approvals and denials effectively. This feature helps in maintaining a balanced workflow within the organization.</p>
+        <p>We understand the importance of timely communication. Our system sends automated notifications at each stage of the leave process, keeping everyone informed. Whether your leave request is approved or requires additional information, you'll receive timely updates.</p>
+        <p>Explore the user-friendly interface to navigate through the various sections effortlessly. The Home page provides quick access to essential features, and the navigation bar simplifies movement across different modules.</p>
+        <p>If you encounter any issues or have questions about using the system, our dedicated support team is here to assist you. Contact us through the available channels, and we'll ensure a swift resolution to your queries.</p>
+    </section>
+
+    <script>
+        function logout() {
+            // You can add your logout functionality here, e.g., redirect to the logout URL
+            window.location.href = "{% url 'logout' %}";
+        }
+    </script>
 
 </body>
+
 </html>
