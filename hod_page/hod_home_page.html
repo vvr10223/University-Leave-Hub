@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            transition: margin-left 0.3s;
+            transition: margin-top 0.3s;
             overflow-x: hidden; /* Prevent horizontal scrollbar */
         }
 
@@ -23,19 +24,6 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 2;
-        }
-
-        .menu-btn {
-            cursor: pointer;
-            padding: 10px;
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            color: rgb(0, 0, 0);
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
             z-index: 2;
         }
 
@@ -56,20 +44,20 @@
         }
 
         .content {
-            margin-top: 70px; /* Adjusted for top navigation height */
-            width: calc(100% - 250px); /* Adjusted width for content */
+            margin-top: 120px; /* Adjusted for top navigation height and box margin */
+            width: 90%;
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            transition: margin-left 0.3s;
+            transition: margin-top 0.3s;
         }
 
         .info-box {
             background-color: #fff;
             padding: 20px;
             margin: 10px;
-            border-radius: 20px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: calc(33.33% - 20px);
@@ -87,72 +75,55 @@
             background-color: #4CAF50;
         }
 
-        .content.open {
-            margin-left:250px; /* Adjusted width when sidebar is open */
-        }
-
-        .content.open .info-box {
-            width: 31%; /* Adjusted width when sidebar is open */
-        }
-
         @media (max-width: 768px) {
             .top-nav {
-                /* padding-left: 50px; Adjusted for menu button */
                 font-size: 1rem;
-                width: 100%;
             }
 
             .content {
-                margin-top: 120px; /* Adjusted for top navigation height and box margin */
-                width: 90%;
+                margin-top: 120px;
             }
 
             .menu-btn {
-                display: block; /* Show on smaller screens */
+                display: block;
                 top: 20px;
             }
 
             nav {
-                left: -250px; /* Adjusted width for mobile screens */
+                left: -100%; /* Adjusted width for mobile screens */
+                transition: left 0.3s;
             }
 
             .info-box {
                 width: 90%;
             }
 
-            .content.open {
-                margin-left: 150px; /* Adjusted width when sidebar is open */
-            }
-            #sideNav{
-                width: 150px;
-            }
             .content.open nav {
                 left: 0;
-            }
-
-            .content.open .info-box {
-                width: 50%; /* Adjusted width when sidebar is open */
             }
         }
 
         @media (min-width: 769px) {
             .content.open .info-box {
-                width: 31%; /* Adjusted width when sidebar is open */
+                width: 31%;
             }
         }
     </style>
 </head>
+
 <body>
 
+    <div class="menu-btn" onclick="toggleNav()">☰</div>
 
     <div class="top-nav">
         Jawaharlal Nehru Technological University Gurajada Vizianagaram
     </div>
 
-    <nav id="sideNav">
-        <a href="#home">Home</a>
-        <a href="leave_history.html">Leave History</a>
-        <a href="employee_dashboard.html">Apply for Leave</a>
+    <nav>
+        <a href="./hod_home_page.html">Home</a>
+        <a href="./leave_history.html">Leave History</a>
+        <a href="./apply_for_leave.html">Apply for Leave</a>
+        <a href="hod_dashboard.html">HOD Dashboard</a>
     </nav>
 
     <div class="content">
@@ -173,6 +144,7 @@
             <h2>Remaining Leaves</h2>
             <p>Count: 15</p>
         </div>
+
         <div class="recent_leaves" style="width: 100%;">
             <h2>Recent Leaves</h2>
             <table border="1" style="width: 100%;">
@@ -198,5 +170,15 @@
         </div>
     </div>
 
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var content = document.querySelector('.content');
+            content.classList.toggle('open');
+            nav.style.left = (content.classList.contains('open')) ? '0' : '-100%';
+        }
+    </script>
+
 </body>
+
 </html>

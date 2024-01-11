@@ -19,7 +19,7 @@
         header {
             text-align: center;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.5);
+            /* background-color: rgba(255, 255, 255, 0.5); */
             display: flex;
             align-items: center; /* Center content vertically */
         }
@@ -31,7 +31,7 @@
         }
 
         h1 {
-            color: #ffffff; /* Set text color to white */
+             color: #ffffff; /* Set text color to white */
             margin: 0; /* Remove default margin for better alignment */
             font-size: 36px; /* Increase font size */
         }
@@ -40,6 +40,12 @@
             font-size: 18px;
             line-height: 1.6;
             margin: 20px;
+        }
+        
+        .center{
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         a {
@@ -87,7 +93,7 @@
 </head>
 <body>
 
-<header>
+<header class="center">
     <img src="https://jntugv.edu.in/static/media/jntugvcev.b33bb43b07b2037ab043.jpg" alt="University Logo" id="logo">
     <h1>Jawaharlal Nehru Technological University - Gurajada Vizianagaram</h1>
 </header>
@@ -98,14 +104,12 @@
     {% endfor %}
 </script>
 
-<nav>
-    <a href="{% url 'register' %}">Register</a>
-    <a href="{% url 'login' %}">Login</a>
-</nav>
 
 <section>
-    <h1>Welcome to Employee Leave Management System of JNTUGV and it's Affiliated colleges</h1>
+    <h1 style="padding-bottom: 40vh; padding-left: 2%; padding-right: 2%;">Welcome to Employee Leave Management System of JNTUGV and it's Affiliated colleges</h1>
     <!-- <p>This is a paragraph describing your university and providing information about the home page.</p> -->
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'login' %}">Login</a>   
 </section>
 
 </body>
