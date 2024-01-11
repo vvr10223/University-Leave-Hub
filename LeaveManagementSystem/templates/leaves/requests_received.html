@@ -65,6 +65,10 @@
             border-radius: 5px;
             padding: 10px 15px;
         }
+        #logo {
+          width: 90px;
+          margin-left : 350px /* Adjust the width as needed for smaller screens */
+      }
     </style>
 </head>
 <body>
@@ -72,13 +76,14 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="history-container">
+                  <img src="/media/univlogo.jpeg" id=logo alt="Your Photo">
                     <h2>Requests Recieved</h2>
                     <a class="btn home-btn" href="{% url 'index' %}">Home</a>
                     {% if faculty.designation != "Vice Chancellor" %}
                     <a class="btn home-btn" href="{% url 'leave_application' %}">Leave Application</a>
                     <a class="btn home-btn" href="{% url 'leave_history' %}">Leave History</a>
                     {% endif %}
-                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" %}
+                    {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor"%}
                     <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
                     <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
                     {% endif %}

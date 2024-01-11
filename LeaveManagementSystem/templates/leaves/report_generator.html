@@ -22,6 +22,26 @@
           th {
             background-color: #f2f2f2;
           }
+          a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+            font-size: 20px; /* Adjust the font size as needed */
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue background color */
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        #logo {
+          width: 100px; /* Adjust the width as needed for smaller screens */
+          margin-left :600px;
+      }
     </style>
 <script>
     {% for message in messages %}
@@ -37,6 +57,8 @@
 <a class="btn home-btn" href="{% url 'report_generator' %}">Report Generator</a>
 <a class="btn home-btn" href="{% url 'requests_received' %}">Requests Recieved</a>
 {% endif %}
+<br>
+<img src="/media/univlogo.jpeg" id=logo alt="Your Photo">
 <h1>Welcome {{ request.user.username }}</h1>
 <h2>Select the options to Generate Report :</h2>
 <form class="leave-form" method="post" action="{% url 'report_generator' %}">
@@ -94,7 +116,6 @@
     {% endfor %}
 </tbody>
 </table>
-
 <img src="{{ image_path }}">
 </body>
 </html>
