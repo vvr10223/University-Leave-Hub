@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    .container{
+        padding-left: 2%;
+        padding-right: 2%;
+        max-width: 150vw;
+        font-family: 'PT Sans', sans-serif;
+    }
+
+    header.center {
+        text-align: center;
+    }
+
+    header.center h3{
+        text-align: center;
+    }
+
+    header img{
+        height: 100px;
+      }
+
+    .flex{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .justify-between{
+        justify-content: space-between;
+    }
+
+    .items-center{
+        align-items: center;
+    }
+
+    .navbar li{
+        list-style: none;
+        margin: 0 13px;
+        font-family: 'Roboto Condensed', sans-serif;   
+    }
+
+    .navbar{
+        display: flex;
+        height: 50px;
+    }
+
+    button{
+        margin-right: 10px;
+        border-radius: 10px;
+        background-color: #007bff;
+    }
+
+    button a{
+       color: white;
+    }
+    
+    .content {
+        width: 90%;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        transition: margin-top 0.3s;
+    }
+
+    .info-box {
+        background-color: #fff;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: calc(33.33% - 20px);
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .sector-design {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 60%;
+        clip-path: ellipse(50% 80% at 0% 0%);
+        background-color: #4CAF50;
+    }
+
+    .center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    footer{
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100px);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    
+    .slide-in {
+      animation: slideIn 1s;
+    }
+  </style>
+</head>
+<body>
+  <header class="center">
+    <img src="jntugv.png" alt="">
+    
+    <h2>Jawaharlal Nehru Technological University - Gurajada Vizianagaram <br>Vizianagaram - 535 003, A.P.<br>
+
+</h2>
+</header>
+    <div class="container">
+        <nav class="flex justify-between">
+            <h1>Manage Leaves</h1>
+            <div class="flex">
+                <ul class="navbar items-center">
+                    <button><li><a href="#home" style="text-decoration: none;"><b>Home</b></li></button>
+                    <button><li><a href="#leave" style="text-decoration: none;"><b>Leave History</b></a></li></button>
+                    <button><li><a href="#apply" style="text-decoration: none;"><b>Apply for leave</b></li></button>
+                    <button><li><a href="#dashboard" style="text-decoration: none;"><b>HOD Dashboard</b></li></button>
+                </ul>
+                </nav>
+            </div>
+        </div>
+            <div class="content">
+                <div class="info-box">
+                    <div class="sector-design"></div>
+                    <h2>Total Leaves</h2>
+                    <p>Count: 20</p>
+                </div>
+        
+                <div class="info-box">
+                    <div class="sector-design"></div>
+                    <h2>Applied Leaves</h2>
+                    <p>Count: 5</p>
+                </div>
+        
+                <div class="info-box">
+                    <div class="sector-design"></div>
+                    <h2>Remaining Leaves</h2>
+                    <p>Count: 15</p>
+                </div>
+                
+        
+                <div class="recent_leaves" style="width: 100%;">
+                    <h2>Recent Leaves</h2>
+                    <table border="1" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Date</th>
+                                <th>Leave Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Django will fill in the table content dynamically -->
+                            <tr>
+                                <td>1</td>
+                                <td>2022-01-01</td>
+                                <td>Vacation</td>
+                                <td>Approved</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <script>
+                function toggleNav() {
+                    var nav = document.querySelector('nav');
+                    var content = document.querySelector('.content');
+                    content.classList.toggle('open');
+                    nav.style.left = (content.classList.contains('open')) ? '0' : '-100%';
+                }
+            </script>
+        
+</body>
+<footer>
+  <p></p>
+</footer>
+</html>
