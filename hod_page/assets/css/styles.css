@@ -664,7 +664,18 @@ position: fixed;
 width: 100%;
 top: 10vh;
 }
-
+.page-title-area-employee-details-page{
+    padding: 0 30px;
+    background: #fff;
+    position: fixed;
+    width: 100%; 
+}
+.page-title-area-leaves-status{
+    padding: 0 30px;
+    background: #fff;
+    position: fixed;
+    width: 100%;
+}
 .page-title-area:before {
 content: "";
 position: absolute;
