@@ -55,7 +55,7 @@ def reportGenerator(request):
         elif current_faculty.designation == 'Principal':
             dept_name=request.POST['department']
         if current_faculty.designation == "Vice Chancellor" or current_faculty.designation == "Registrar" :
-            if college_name=='all_colleges' and dept_name=='all_departments':
+            if college_name =='all_colleges' and dept_name =='all_departments':
                 with connection.cursor() as cursor:
                     cursor.execute("select year,employee_id_id,faculty_name,college_name,dept_name,sum(number_of_days) from leaves_leaves join registration_faculty on leaves_leaves.employee_id_id = registration_faculty.employee_id join registration_colleges on registration_faculty.college_id_id = registration_colleges.id join registration_department on registration_faculty.dept_id_id = registration_department.id where status= %s or status=%s or status=%s group by employee_id,year",[json.dumps(status_accepted),json.dumps(principal_status_registrar_accepted),json.dumps(registrar_status_viceChancellor_accepted)])
                     rows = cursor.fetchall()
@@ -95,12 +95,16 @@ def reportGenerator(request):
                     rows = cursor.fetchall()
                     print(rows)
         df=pd.DataFrame(rows,columns=['Year','EmployeeID','EmployeeName','CollegeName','DepartmentName','TotalLeaves'])
-        employee_ids=df.EmployeeID.unique()
-        print(employee_ids)
-        for employee_id in employee_ids:
-            df_r=df[df['EmployeeID'] == employee_id]
-            fig, ax = plt.subplots()
-            ax.bar(df_r.Year,df_r.TotalLeaves,color='blue',width=0.4)
+        df_r=df[df['Year'] == 2024]
+        fig, ax = plt.subplots()
+        plt.bar(df_r.EmployeeID,df_r.TotalLeaves,color='blue',width=0.4)
+        plt.xlabel('Employee IDs')
+        plt.ylabel('Total Leaves Applied')
+        plt.title('Leaves Graph')
+        # for employee_id in employee_ids:
+        #     df_r=df[df['EmployeeID'] == employee_id]
+        #     fig, ax = plt.subplots()
+        #     ax.bar(df_r.Year,df_r.TotalLeaves,color='blue',width=0.4)
         image_path = os.path.join('media', 'matplotlib_plot.png')
         plt.savefig(image_path)
         plt.close(fig)
