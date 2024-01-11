@@ -137,10 +137,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone Number" required>
+                            <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" title="Mobile number should be 10 digits long and contain only numbers" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="aadhar" placeholder="Aadhar Number" required>
+                            <input type="text" name="aadhar" placeholder="Aadhar Number" pattern="[0-9]{12}" title="Aadhaar number should be 12 digits long and contain only numbers" required>
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" placeholder="Email" required>
