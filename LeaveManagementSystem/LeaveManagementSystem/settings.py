@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'LeaveManagementSystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'LEAVEMANAGEMENTDB',
-        'USER': 'admin',
-        'PASSWORD': 'VENKy2003',
-        'HOST': 'venkydb.c5i2qcka81ij.eu-north-1.rds.amazonaws.com',
-        'PORT': '3306',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }

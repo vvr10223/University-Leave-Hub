@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<title>Report Generator</title>
+    <style>
+      .content{
+        position: relative;
+        top:8vh;
+      }
+        .form-group{
+            margin-right : 50px;
+            display : inline-block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+          }
+      
+          th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+      
+          th {
+            background-color: #f2f2f2;
+          }
+          a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+            font-size: 20px; /* Adjust the font size as needed */
+            padding: 10px 20px;
+            /* background-color: #007bff; Blue background color */
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        /* a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        /* } */
+        #logo {
+          width: 100px; /* Adjust the width as needed for smaller screens */
+          margin-left :600px;
+      }
+      body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #dde6ff; */
+            transition: margin-left 0.3s;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+
+        .top-nav {
+            height: 5vh;
+            background-color: #72bcd9;
+            color: rgb(61, 42, 132);
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            position: fixed;
+            width: 100%;
+            /* top: 0; */
+        }
+        nav {
+            height: 4vh;
+            width: 100%;
+            background-color: #d8bdff;
+            position: fixed;
+            margin-top: 5vh;
+            /* top: calc(3vh+10px); */
+            align-items: center;
+        }
+
+        nav a {
+            padding-left:1vh;
+            text-decoration: none;
+            font-size: 1rem;
+            color: rgb(13, 2, 72);
+        }
+
+        @media (max-width: 768px) {
+            .top-nav {
+                /* padding-left: 50px; Adjusted for menu button */
+                font-size: 1rem;
+                width: 100%;
+            }
+            nav {
+                left: 0; /* Adjusted width for mobile screens */
+                width: 100%;
+            }
+            nav a{
+              padding-left: 1vh;
+            }
+
+            #sideNav{
+                width:100%;
+            }
+            .content.open nav {
+                left: 0;
+            }
+
+        }
+
+        .print-button-container {
+          margin-top: 30px;
+      position: relative;
+      text-align: center;
+    }
+
+    .button1 {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 10px;
+      /* font-weight: bold; */
+      transition: color 0.3s ease-in-out;
+      font-size: 15px;
+      border-radius: 5px;
+      display: inline-block;
+      background-color: #007bff;
+    }
+
+        @media (min-width: 769px) {
+            .content.open .info-box {
+                width: 31%; /* Adjusted width when sidebar is open */
+            }
+        }
+    </style>
+<body>
+<script>
+  function printAsPDF() {
+    window.print();
+  }
+</script>
+<div class="top-nav">
+  Jawaharlal Nehru Technological University Gurajada Vizianagaram
+</div>
+<nav id="sideNav" align="right">
+  <a href="{% url 'index' %}">Home</a>
+<!-- {% if faculty.designation != "Vice Chancellor" %} -->
+<a href="{% url 'leave_application' %}">Leave Application</a>
+<a href="{% url 'leave_history' %}">Leave History</a>
+<!-- {% endif %} -->
+<!-- {% if faculty.designation == "Principal" or faculty.designation == "HOD" or faculty.designation == "Registrar" or faculty.designation == "Vice Chancellor" %} -->
+<a href="{% url 'report_generator' %}">Report Generator</a>
+<a href="{% url 'requests_received' %}">Requests Recieved</a>
+<!-- {% endif %} -->
+</nav>
+<br>
+<!-- <img src="/media/univlogo.jpeg" id=logo alt="Your Photo"> -->
+<!-- <h1>Welcome {{ request.user.username }}</h1> -->
+<div class="content">
+  <h2>Select the options to Generate Report :</h2>
+  <form class="leave-form" method="post" action="{% url 'report_generator' %}">
+      <!-- {% csrf_token %} -->
+  <!-- {% if faculty.designation == "Vice Chancellor" or faculty.designation == "Registrar" %} -->
+  <div class="form-group">
+      <label for="college"><h3>Colleges :</h3></label>
+      <select name="college" id="college" required>
+          <option value="all_colleges">All Colleges</option>
+          <!-- {% for college in colleges %} -->
+          <option value=>college name</option>
+          <!-- {% endfor %} -->
+      </select>
+  </div>
+  <!-- {% endif %} -->
+  <!-- {% if faculty.designation != 'HOD' %} -->
+  <div class="form-group">
+      <label for="department"><h3>Departments :</h3></label>
+      <select name="department" id="department" required>
+          <option value="all_departments">All Departments</option>
+          <!-- {% for dept in departments %} -->
+          <option value={{ dept.dept_name }}>{{ dept.dept_name.upper }}</option>
+          <!-- {% endfor %} -->
+      </select>
+  </div>
+  {% endif %}
+  <button type="submit" class="btn btn-primary">submit</button>
+
+  
+  <h2>Requested Records</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Employee ID</th>
+        <th>EmployeeName</th>
+        <th>College Name</th>
+        <th>Department Name</th>
+        <th>Total Leaves</th>
+      </tr>
+    </thead>
+  <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+        <td>{{ row.2 }}</td>
+        <td>{{ row.3 }}</td>
+        <td>{{ row.4 }}</td>
+        <td>{{ row.5 }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+  <div class="print-button-container">
+    <button onclick="printAsPDF()" class="button1">Print as PDF</button>
+  </div>
+</div>
+
+<img src="{{ image_path }}">
+
+</body>
+
+</html>
