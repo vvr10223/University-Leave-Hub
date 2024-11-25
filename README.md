@@ -89,9 +89,6 @@ A comprehensive Leave Management System designed to streamline faculty leave app
 8. **Access the Application**  
    Open `http://127.0.0.1:8000` in your browser.  
 
-## Screenshots/Demos  
-
-*(Include screenshots or demo GIFs if available)*  
 
 ## Contributing  
 
